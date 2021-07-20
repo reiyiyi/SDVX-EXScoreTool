@@ -32,8 +32,8 @@ def rival():
     return "Hello."
 #改良する必要がある
 
-@app.route('/scoresetting')
-def scoresetting():
+@app.route('/setting')
+def setting():
     return "Hello."
 
 if __name__ == "__main__":

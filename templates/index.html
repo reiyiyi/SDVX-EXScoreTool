@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <title>SDVX-EXスコアツール</title>
+</head>
+<body>
+    <header class="site-header wrapper">
+        <div class="header">
+            <h1 class="appname">SDVX-EXスコアツール</h1>
+        </div>
+    </header>
+    <div class="inline">
+        <a href="{{url_for('resister')}}" class="button">スコア登録</a>
+        <a href="{{url_for('rival')}}" class="button">好敵手</a>
+        <a href="{{url_for('notice')}}" class="button">通知</a>
+        <a href="{{url_for('setting')}}" class="button">設定</a>
+        <a href="{{url_for('logout')}}" class="button">ログアウト</a>
+    </div>
+    <hr>
+
+    <hr>
+    <footer class="site-footer wrapper">
+        <div class="footer">
+        </div>
+    </footer>
+</body>
+</html>
