@@ -1,6 +1,8 @@
 from flask import Flask, render_template, session
+from flask.globals import request
 import st_login
 import st_data
+import score_resister
 
 app = Flask(__name__)
 @app.route('/')
@@ -33,6 +35,16 @@ def resister():
     #逆参照譜面IDデータ
     #ユーザデータ
     return render_template('resister.html')
+
+@app.route('/resister/hiscore', methods=['POST'])
+def hiscore():
+    if 'score' in request.form:
+        score_txt_data = str(request.form['score'])
+        user = "id00000"
+        score_resister.update_score(user, score_txt_data)
+    user_data = st_data.load_user_data()
+    
+    return render_template('hiscore.html')
 
 @app.route('/notice')
 def notice():
