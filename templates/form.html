@@ -15,8 +15,22 @@
         </div>
     </header>
     <div class="login-form">
-        <p>ユーザーID</p>
-        <p>パスワード</p>
+        <form action="/login/signup/try" method="POST"
+                class="pure-form pure-form-stacked">
+            <legend>アカウント登録のため、ユーザー名とパスワードを入力してください</legend>
+            <fieldset>
+                <label for="user">ユーザー名</label>
+                <input type="text" name="user" id="user">
+                <label for="pw">パスワード</label>
+                <input type="password" name="pw" id="pw">
+                <button type="submit"
+                        class="pure-button pure-button-primary">
+                    新規登録</button>
+            </fieldset>
+        </form>
+    </div>
+    <div class="signup-form">
+
     </div>
     <hr>
 

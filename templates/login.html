@@ -15,9 +15,22 @@
         </div>
     </header>
     <div class="login-form">
-        <p>新規登録、ログイン</p>
-        <p>ユーザーID</p>
-        <p>パスワード</p>
+        <form action="/login/try" method="POST"
+                class="pure-form pure-form-stacked">
+            <legend>ログインしてください</legend>
+            <fieldset>
+                <label for="user">ユーザー名</label>
+                <input type="text" name="user" id="user">
+                <label for="pw">パスワード</label>
+                <input type="password" name="pw" id="pw">
+                <button type="submit"
+                        class="pure-button pure-button-primary">
+                    ログイン</button>
+            </fieldset>
+        </form>
+    </div>
+    <div class="signup-form">
+        <a href="{{url_for('signup')}}" class="button">新規登録はこちらから</a>
     </div>
     <hr>
 
