@@ -12,7 +12,9 @@ app.secret_key = 'Rjr7GwR3hkq1h'
 def index():
     if not st_login.is_login():
         return redirect('/login')
-    return render_template('index.html')
+    user = st_login.get_user_id()
+    return render_template('index.html',
+                            user=user)
 
 @app.route('/login')
 def login():
@@ -71,7 +73,7 @@ def hiscore():
         return redirect('/login')
     if 'score' in request.form:
         score_txt_data = str(request.form['score'])
-        user = "id00000"
+        user = st_login.get_user_id()
         score_resister.update_score(user, score_txt_data)
     user_data = st_data.load_user_data()
 
