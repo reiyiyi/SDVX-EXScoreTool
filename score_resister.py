@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 from io import StringIO
-import queue
 import st_data
 
 def update_score(user, score_txt_data):
@@ -31,9 +30,23 @@ def update_score(user, score_txt_data):
                 hi_score_list = hi_score_list[1:]
             hi_score_list.append(add_data)
 
+            for rival in user_data[user]["rev-rival"]:
+                if before_score <= exscore_data.loc[effect_id_data[tune_name][diff]["id"], rival] and \
+                    after_score >= exscore_data.loc[effect_id_data[tune_name][diff]["id"], rival]:
+                    notice_data = {
+                        "楽曲名":tune_name,
+                        "難易度":diff,
+                        "レベル":level.item(),
+                        "好敵手名":user_data[user]["user-name"],
+                        "スコア":exscore_data.loc[effect_id_data[tune_name][diff]["id"], rival].item(),
+                        "好敵手スコア":after_score.item()
+                    }
+                    if len(user_data[rival]["notice"]) == 100:
+                        user_data[rival]["notice"] = user_data[rival]["notice"][1:]
+                    user_data[rival]["notice"].append(notice_data)
+
         exscore_data.loc[effect_id_data[tune_name][diff]["id"], user] = score_data.loc[i, "EXスコア"]
     user_data[user]["hi-score"] = hi_score_list[0:]
 
     st_data.save_user_data(user_data)
     st_data.save_exscore_data(exscore_data)
-
