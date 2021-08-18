@@ -5,6 +5,7 @@ import st_data
 import st_signup
 import st_settings
 import score_resister
+import rival_resister
 
 app = Flask(__name__)
 app.secret_key = 'Rjr7GwR3hkq1h'
@@ -93,28 +94,46 @@ def notice():
 def rival():
     if not st_login.is_login():
         return redirect('/login')
-    #ユーザデータ
-    #ユーザIDを乱数にするべき(4桁-4桁)
     return render_template('rival.html')
-#改良する必要がある
 
 @app.route('/rival/follow')
 def rival_follow():
     if not st_login.is_login():
         return redirect('/login')
-    return render_template('rival-list.html')
+    rival_data = rival_resister.get_rival()
+    return render_template('rival-list.html',
+                            current="好敵手",
+                            rival_data=rival_data)
 
 @app.route('/rival/follower')
 def rival_follower():
     if not st_login.is_login():
         return redirect('/login')
-    return render_template('rival-list.html')
+    rev_rival_data = rival_resister.get_rev_rival()
+    return render_template('rival-list.html',
+                            current="逆好敵手",
+                            rival_data=rev_rival_data)
 
 @app.route('/rival/search')
 def rival_search():
     if not st_login.is_login():
         return redirect('/login')
+    rival_resister.cancel()
     return render_template('rival-search.html')
+
+@app.route('/rival/search/follow', methods=['POST'])
+def follow_rival():
+    search_id = request.form.get('search-id')
+    if not rival_resister.is_exist(search_id):
+        return redirect('/rival/search')
+    rival_name = rival_resister.get_rival_name(search_id)
+    return render_template('rival-resister.html',
+                            rival_name=rival_name)
+
+@app.route('/rival/search/follow/try', methods=['GET'])
+def try_follow_rival():
+    rival_resister.follow_rival()
+    return redirect('/rival/search')
 
 @app.route('/settings')
 def settings():

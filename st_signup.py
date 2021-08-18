@@ -6,6 +6,7 @@ def try_signup(user, pw):
     user_data[user] = {
         "user-name": user,
         "password": pw,
+        "search-rival": "",
         "rival": {},
         "rev-rival": {},
         "notice": [],

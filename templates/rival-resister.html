@@ -14,13 +14,12 @@
             <h1 class="appname">SDVX-EXスコアツール</h1>
         </div>
     </header>
-    <div class="rival-list">
-        <p>{{current}}欄</p>
-        {% for rival in rival_list %}
-        <hr>
-        <p>ID: {{ rival }}</p>
-        <p>NAME: {{ rival_list[rival] }}</p>
-        {% endfor %}
+    <div class="rival-resister">
+        <p>{{rival_name}}さんを好敵手に登録しますか？</p>
+        <div class="inline">
+            <a href="{{url_for('try_follow_rival')}}" class="button">はい</a>
+            <a href="{{url_for('rival_search')}}" class="button">いいえ</a>
+        </div>
     </div>
     <hr>
 
