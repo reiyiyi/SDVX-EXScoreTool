@@ -30,7 +30,7 @@ def update_score(user, score_txt_data):
                 hi_score_list = hi_score_list[1:]
             hi_score_list.append(add_data)
             exscore_data.loc[effect_id_data[tune_name][diff]["id"], user] = score_data.loc[i, "EXスコア"]
-            
+
             if user_data[user]["score-setting"] == False:
                 continue
 
@@ -43,7 +43,8 @@ def update_score(user, score_txt_data):
                         "レベル":level.item(),
                         "好敵手名":user_data[user]["user-name"],
                         "スコア":exscore_data.loc[effect_id_data[tune_name][diff]["id"], rival].item(),
-                        "好敵手スコア":after_score.item()
+                        "好敵手更新前スコア":before_score.item(),
+                        "好敵手更新後スコア":after_score.item()
                     }
                     if len(user_data[rival]["notice"]) == 100:
                         user_data[rival]["notice"] = user_data[rival]["notice"][1:]

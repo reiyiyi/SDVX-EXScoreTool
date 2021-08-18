@@ -4,6 +4,7 @@ import st_login
 import st_data
 import st_signup
 import st_settings
+import st_notice
 import score_resister
 import rival_resister
 
@@ -81,14 +82,16 @@ def hiscore():
 
     return render_template('hiscore.html',
                             hi_score_list=user_data[user]["hi-score"][0:],
-                            data_num=len(user_data[user]["hi-score"][0:]))
+                            data_num=len(user_data[user]["hi-score"]))
 
 @app.route('/notice')
 def notice():
     if not st_login.is_login():
         return redirect('/login')
-    #ユーザデータ
-    return render_template('notice.html')
+    notice_list = st_notice.get_notice()
+    return render_template('notice.html',
+                            notice_list=notice_list[0:],
+                            data_num=len(notice_list))
 
 @app.route('/rival')
 def rival():

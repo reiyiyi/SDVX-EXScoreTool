@@ -14,8 +14,14 @@
             <h1 class="appname">SDVX-EXスコアツール</h1>
         </div>
     </header>
-    <div class="notice-list">
-        <p>通知欄</p>
+    <div class="notice">
+        <p>通知</p>
+        {% for i in range(data_num) %}
+        <hr>
+        <p>{{notice_list[-i-1]["好敵手名"]}}さんに、あなたの{{notice_list[-i-1]["楽曲名"]}}[{{notice_list[-i-1]["難易度"]}} {{notice_list[-i-1]["レベル"]}}]
+            のEXスコア {{notice_list[-i-1]["スコア"]}} を抜かされました。</p>
+        <p>{{notice_list[-i-1]["好敵手名"]}}さんのスコア:{{notice_list[-i-1]["好敵手更新前スコア"]}} → {{notice_list[-i-1]["好敵手更新後スコア"]}}</p>
+        {% endfor %}
     </div>
     <hr>
 
