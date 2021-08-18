@@ -1,5 +1,6 @@
 from flask import Flask, render_template, session, redirect
 from flask.globals import request
+import os
 import st_login
 import st_data
 import st_signup
@@ -9,7 +10,7 @@ import score_resister
 import rival_resister
 
 app = Flask(__name__)
-app.secret_key = 'Rjr7GwR3hkq1h'
+app.secret_key = os.environ["APP_SECRET_KEY"]
 
 @app.route('/')
 def index():
