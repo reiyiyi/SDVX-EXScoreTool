@@ -61,3 +61,9 @@ def cancel():
     user = st_login.get_user_id()
     user_data[user]["search-rival"] = ""
     st_data.save_user_data(user_data)
+
+def is_resistered():
+    user_data = st_data.load_user_data()
+    user = st_login.get_user_id()
+    rival = user_data[user]["search-rival"]
+    return rival in user_data[user]["rival"]

@@ -120,15 +120,26 @@ def rival_search():
 
 @app.route('/rival/search/follow', methods=['POST'])
 def follow_rival():
+    if not st_login.is_login():
+        return redirect('/login')
     search_id = request.form.get('search-id')
     if not rival_resister.is_exist(search_id):
         return redirect('/rival/search')
     rival_name = rival_resister.get_rival_name(search_id)
+    text_data = 'を好敵手に登録'
+    if rival_resister.is_resistered():
+        text_data = 'の好敵手設定を解除'
     return render_template('rival-resister.html',
-                            rival_name=rival_name)
+                            rival_name=rival_name,
+                            text_data=text_data)
 
 @app.route('/rival/search/follow/try', methods=['GET'])
 def try_follow_rival():
+    if not st_login.is_login():
+        return redirect('/login')
+    if rival_resister.is_resistered():
+        rival_resister.remove_rival()
+        return redirect('/rival/search')
     rival_resister.follow_rival()
     return redirect('/rival/search')
 
@@ -150,6 +161,8 @@ def settings():
 
 @app.route('/settings/change', methods=['POST'])
 def chenge():
+    if not st_login.is_login():
+        return redirect('/login')
     new_user_name = request.form.get('new-user-name')
     score_setting = request.form.get('score-setting')
     if score_setting == 'yes':
