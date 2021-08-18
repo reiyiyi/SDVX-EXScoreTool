@@ -38,7 +38,7 @@ def get_rival():
     user = st_login.get_user_id()
     return_data = user_data[user]["rival"].copy()
     for rival in return_data:
-        return_data[rival] = user_data[rival]["user_name"]
+        return_data[rival] = user_data[rival]["user-name"]
     return return_data
 
 def get_rev_rival():
@@ -46,7 +46,7 @@ def get_rev_rival():
     user = st_login.get_user_id()
     return_data = user_data[user]["rev-rival"].copy()
     for rival in return_data:
-        return_data[rival] = user_data[rival]["user_name"]
+        return_data[rival] = user_data[rival]["user-name"]
     return return_data
 
 def get_rival_name(rival):
