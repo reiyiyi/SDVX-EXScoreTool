@@ -21,3 +21,9 @@ def get_user_id():
     if is_login():
         return session['login']
     return 'not login'
+
+def get_user_name():
+    user_data = st_data.load_user_data()
+    if is_login():
+        return user_data[session['login']]["user-name"]
+    return 'not login'

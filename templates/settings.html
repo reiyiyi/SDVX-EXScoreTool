@@ -14,9 +14,16 @@
             <h1 class="appname">SDVX-EXスコアツール</h1>
         </div>
     </header>
+    <p>設定</p>
     <div class="settings">
         <p>ユーザー名</p>
+        <input type="text" name="new-user-name" id="new-user-name" value={{user_name}}>
         <p>スコア公開設定</p>
+        <input type="radio" name="score-setting" id="score-setting" value="yes" {{true_checked}}>公開
+        <input type="radio" name="score-setting" id="score-setting" value="no" {{false_checked}}>非公開
+        <button type="submit"
+                class="pure-button pure-button-primary">
+            更新</button>
     </div>
     <hr>
 

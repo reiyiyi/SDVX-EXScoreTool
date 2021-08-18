@@ -3,6 +3,7 @@ from flask.globals import request
 import st_login
 import st_data
 import st_signup
+import st_settings
 import score_resister
 
 app = Flask(__name__)
@@ -12,7 +13,7 @@ app.secret_key = 'Rjr7GwR3hkq1h'
 def index():
     if not st_login.is_login():
         return redirect('/login')
-    user = st_login.get_user_id()
+    user = st_login.get_user_name()
     return render_template('index.html',
                             user=user)
 
@@ -119,8 +120,28 @@ def rival_search():
 def settings():
     if not st_login.is_login():
         return redirect('/login')
-    #ユーザデータ
-    return render_template('settings.html')
+    user_name, score_setting = st_settings.get_settings()
+    true_checked = ""
+    false_checked = ""
+    if score_setting:
+        true_checked = "checked"
+    else:
+        false_checked = "checked"
+    return render_template('settings.html',
+                            user_name=user_name,
+                            true_checked=true_checked,
+                            false_checked=false_checked)
+
+@app.route('/settings/change')
+def chenge():
+    new_user_name = request.form.get('new-user-name')
+    score_setting = request.form.get('score-setting')
+    if score_setting == 'yes':
+        score_setting = True
+    else:
+        score_setting = False
+    st_settings.score_settings_change(new_user_name, score_setting)
+    return redirect('/settings')
 
 if __name__ == "__main__":
    app.run(debug=True, host='0.0.0.0')
