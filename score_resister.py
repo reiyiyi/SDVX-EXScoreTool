@@ -29,6 +29,10 @@ def update_score(user, score_txt_data):
             if len(hi_score_list) == 100:
                 hi_score_list = hi_score_list[1:]
             hi_score_list.append(add_data)
+            exscore_data.loc[effect_id_data[tune_name][diff]["id"], user] = score_data.loc[i, "EXスコア"]
+            
+            if user_data[user]["score-setting"] == False:
+                continue
 
             for rival in user_data[user]["rev-rival"]:
                 if before_score <= exscore_data.loc[effect_id_data[tune_name][diff]["id"], rival] and \
@@ -45,7 +49,6 @@ def update_score(user, score_txt_data):
                         user_data[rival]["notice"] = user_data[rival]["notice"][1:]
                     user_data[rival]["notice"].append(notice_data)
 
-        exscore_data.loc[effect_id_data[tune_name][diff]["id"], user] = score_data.loc[i, "EXスコア"]
     user_data[user]["hi-score"] = hi_score_list[0:]
 
     st_data.save_user_data(user_data)
