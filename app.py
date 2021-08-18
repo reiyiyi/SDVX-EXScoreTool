@@ -132,7 +132,7 @@ def settings():
                             true_checked=true_checked,
                             false_checked=false_checked)
 
-@app.route('/settings/change')
+@app.route('/settings/change', methods=['POST'])
 def chenge():
     new_user_name = request.form.get('new-user-name')
     score_setting = request.form.get('score-setting')
