@@ -21,8 +21,8 @@ def update_score(score_txt_data):
         before_score = exscore_data.loc[effect_id_data[tune_name][diff]["id"], user]
         after_score = score_data.loc[i, "EXスコア"]
         exscore_data.loc[effect_id_data[tune_name][diff]["id"], user] = score_data.loc[i, "EXスコア"]
-        
-        if exscore_data.loc[effect_id_data[tune_name][diff]["id"], user] < score_data.loc[i, "EXスコア"] and exscore_data.loc[effect_id_data[tune_name][diff]["id"], user] > 0:
+
+        if before_score < after_score and before_score > 0:
             add_data = {
                 "楽曲名":tune_name,
                 "難易度":diff,
