@@ -63,11 +63,6 @@ def try_logout():
 def resister():
     if not st_login.is_login():
         return redirect('/login')
-    #スコア登録した後に以下のデータを読み込み...
-    #EXスコアデータ
-    #譜面IDデータ
-    #逆参照譜面IDデータ
-    #ユーザデータ
     return render_template('resister.html')
 
 @app.route('/resister/hiscore', methods=['POST'])

@@ -18,9 +18,11 @@ def update_score(score_txt_data):
         tune_name = score_data.loc[i, "          楽曲名"]
         diff = score_data.loc[i, "難易度"]
         level = score_data.loc[i, "楽曲レベル"]
+        before_score = exscore_data.loc[effect_id_data[tune_name][diff]["id"], user]
+        after_score = score_data.loc[i, "EXスコア"]
+        exscore_data.loc[effect_id_data[tune_name][diff]["id"], user] = score_data.loc[i, "EXスコア"]
+        
         if exscore_data.loc[effect_id_data[tune_name][diff]["id"], user] < score_data.loc[i, "EXスコア"] and exscore_data.loc[effect_id_data[tune_name][diff]["id"], user] > 0:
-            before_score = exscore_data.loc[effect_id_data[tune_name][diff]["id"], user]
-            after_score = score_data.loc[i, "EXスコア"]
             add_data = {
                 "楽曲名":tune_name,
                 "難易度":diff,
@@ -31,7 +33,6 @@ def update_score(score_txt_data):
             if len(hi_score_list) == 100:
                 hi_score_list = hi_score_list[1:]
             hi_score_list.append(add_data)
-            exscore_data.loc[effect_id_data[tune_name][diff]["id"], user] = score_data.loc[i, "EXスコア"]
 
             if user_data[user]["score-setting"] == False:
                 continue
