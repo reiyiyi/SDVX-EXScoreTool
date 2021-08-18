@@ -2,8 +2,10 @@ import pandas as pd
 import numpy as np
 from io import StringIO
 import st_data
+import st_login
 
-def update_score(user, score_txt_data):
+def update_score(score_txt_data):
+    user = st_login.get_user_id()
     score_txt_data = StringIO(score_txt_data)
     score_data = pd.read_csv(score_txt_data, sep=",")
 
@@ -54,3 +56,8 @@ def update_score(user, score_txt_data):
 
     st_data.save_user_data(user_data)
     st_data.save_exscore_data(exscore_data)
+
+def get_hi_score_data():
+    user_data = st_data.load_user_data()
+    user = st_login.get_user_id()
+    return user_data[user]["hi-score"]

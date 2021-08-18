@@ -76,13 +76,11 @@ def hiscore():
         return redirect('/login')
     if 'score' in request.form:
         score_txt_data = str(request.form['score'])
-        user = st_login.get_user_id()
-        score_resister.update_score(user, score_txt_data)
-    user_data = st_data.load_user_data()
-
+        score_resister.update_score(score_txt_data)
+    hi_score_data = score_resister.get_hi_score_data()
     return render_template('hiscore.html',
-                            hi_score_list=user_data[user]["hi-score"][0:],
-                            data_num=len(user_data[user]["hi-score"]))
+                            hi_score_list=hi_score_data,
+                            data_num=len(hi_score_data))
 
 @app.route('/notice')
 def notice():
