@@ -3,8 +3,8 @@ import json
 import pandas as pd
 import boto3
 
-#BASE_DIR = 'data/'
-BASE_DIR = 'test_data/'
+BASE_DIR = 'data/'
+#BASE_DIR = 'test_data/'
 
 s3 = boto3.resource('s3',
                 aws_access_key_id=os.environ["AWS_ACCESS_KEY_ID"],
