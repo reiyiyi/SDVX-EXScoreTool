@@ -39,12 +39,14 @@ def update_score(score_txt_data):
                 return_data = return_data[1:]
             return_data.append(add_data)
 
-            if user_data[user]["score-setting"] == False:
-                continue
+        if user_data[user]["score-setting"] == False:
+            continue
 
+        if before_score < after_score:
             for rival in user_data[user]["rev-rival"]:
                 if before_score <= exscore_data.loc[effect_id_data[tune_name][diff]["id"], rival] and \
-                    after_score >= exscore_data.loc[effect_id_data[tune_name][diff]["id"], rival]:
+                    after_score >= exscore_data.loc[effect_id_data[tune_name][diff]["id"], rival] and \
+                    exscore_data.loc[effect_id_data[tune_name][diff]["id"], rival] > 0:
                     notice_data = {
                         "楽曲名":tune_name,
                         "難易度":diff,
