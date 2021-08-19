@@ -187,8 +187,11 @@ def chenge():
         score_setting = True
     else:
         score_setting = False
-    st_settings.score_settings_change(new_user_name, score_setting)
-    return redirect('/settings')
+    mode = st_settings.score_settings_change(new_user_name, score_setting)
+    if mode == '成功':
+        return redirect('/')
+    return render_template('settings_error.html',
+                            mode=mode)
 
 if __name__ == "__main__":
    app.run(debug=True, host='0.0.0.0')
