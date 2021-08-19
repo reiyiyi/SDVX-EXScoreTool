@@ -46,8 +46,11 @@ def signup():
 def try_signup():
     user = request.form.get('user', '')
     pw = request.form.get('pw', '')
-    st_signup.try_signup(user, pw)
-    return redirect('/')
+    mode = st_signup.try_signup(user, pw)
+    if mode == '成功':
+        return redirect('/login')
+    return render_template('form_error.html',
+                            mode=mode)
     #ユーザデータ
 
 @app.route('/logout')
