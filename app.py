@@ -20,6 +20,10 @@ def index():
     return render_template('index.html',
                             user=user)
 
+@app.route('/manual')
+def manual():
+    return render_template('manual.html')
+
 @app.route('/login')
 def login():
     return render_template('login.html')
@@ -70,13 +74,24 @@ def resister():
 def hiscore():
     if not st_login.is_login():
         return redirect('/login')
+    hi_score_data = []
     if 'score' in request.form:
         score_txt_data = str(request.form['score'])
-        score_resister.update_score(score_txt_data)
+        hi_score_data = score_resister.update_score(score_txt_data)
+    return render_template('hiscore.html',
+                            hi_score_list=hi_score_data,
+                            data_num=len(hi_score_data),
+                            mode='今回')
+
+@app.route('/hiscore')
+def recently_hiscore():
+    if not st_login.is_login():
+        return redirect('/login')
     hi_score_data = score_resister.get_hi_score_data()
     return render_template('hiscore.html',
                             hi_score_list=hi_score_data,
-                            data_num=len(hi_score_data))
+                            data_num=len(hi_score_data),
+                            mode='直近')
 
 @app.route('/notice')
 def notice():

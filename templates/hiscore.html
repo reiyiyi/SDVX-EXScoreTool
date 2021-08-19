@@ -15,7 +15,7 @@
         </div>
     </header>
     <div class="hiscore">
-        <p>直近のEXスコア更新</p>
+        <p>{{mode}}のEXスコア更新</p>
         {% for i in range(data_num) %}
         <hr>
         <p>{{ hi_score_list[-i-1]["楽曲名"] }}[{{ hi_score_list[-i-1]["難易度"] }} {{ hi_score_list[-i-1]["レベル"] }}]</p>

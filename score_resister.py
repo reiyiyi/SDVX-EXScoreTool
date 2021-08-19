@@ -5,6 +5,7 @@ import st_data
 import st_login
 
 def update_score(score_txt_data):
+    return_data = []
     user = st_login.get_user_id()
     score_txt_data = StringIO(score_txt_data)
     score_data = pd.read_csv(score_txt_data, sep=",")
@@ -34,6 +35,10 @@ def update_score(score_txt_data):
                 hi_score_list = hi_score_list[1:]
             hi_score_list.append(add_data)
 
+            if len(return_data) == 100:
+                return_data = return_data[1:]
+            return_data.append(add_data)
+
             if user_data[user]["score-setting"] == False:
                 continue
 
@@ -57,6 +62,8 @@ def update_score(score_txt_data):
 
     st_data.save_user_data(user_data)
     st_data.save_exscore_data(exscore_data)
+
+    return return_data
 
 def get_hi_score_data():
     user_data = st_data.load_user_data()
