@@ -7,6 +7,9 @@ import st_login
 def update_score(score_txt_data):
     return_data = []
     user = st_login.get_user_id()
+
+    idx = score_txt_data.index('楽')
+    score_txt_data = score_txt_data[idx:]
     score_txt_data = StringIO(score_txt_data)
     score_data = pd.read_csv(score_txt_data, sep=",")
 
@@ -16,7 +19,7 @@ def update_score(score_txt_data):
     hi_score_list = user_data[user]["hi-score"][0:]
 
     for i in range(score_data.shape[0]):
-        tune_name = score_data.loc[i, "          楽曲名"]
+        tune_name = score_data.loc[i, "楽曲名"]
         diff = score_data.loc[i, "難易度"]
         level = score_data.loc[i, "楽曲レベル"]
         before_score = exscore_data.loc[effect_id_data[tune_name][diff]["id"], user]
