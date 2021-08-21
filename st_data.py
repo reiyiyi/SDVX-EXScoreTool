@@ -4,6 +4,7 @@ import pandas as pd
 import boto3
 
 BASE_DIR = 'data/'
+MIRROR_DIR = 'mirror/'
 #BASE_DIR = 'test_data/'
 
 s3 = boto3.resource('s3',
@@ -41,6 +42,7 @@ def save_exscore_data(save_data):
     FILE_NAME = 'EXscore.csv'
     save_data.to_csv(FILE_NAME, index=False)
     bucket.upload_file(FILE_NAME, BASE_DIR + FILE_NAME)
+    bucket.upload_file(FILE_NAME, MIRROR_DIR + FILE_NAME)
 
 #user_data.json
 def load_user_data():
@@ -56,3 +58,4 @@ def save_user_data(save_data):
     with open(FILE_NAME, 'w', encoding='utf-8') as f:
         json.dump(save_data, f, ensure_ascii=False, indent=4)
     bucket.upload_file(FILE_NAME, BASE_DIR + FILE_NAME)
+    bucket.upload_file(FILE_NAME, MIRROR_DIR + FILE_NAME)
