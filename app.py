@@ -4,6 +4,7 @@ import os
 import st_login
 import st_data
 import st_signup
+import st_strengths
 import st_settings
 import st_notice
 import score_resister
@@ -95,6 +96,15 @@ def recently_hiscore():
                             hi_score_list=hi_score_data,
                             data_num=len(hi_score_data),
                             mode='直近')
+
+@app.route('/strengths')
+def strengths():
+    if not st_login.is_login():
+        return redirect('/login')
+    strengths_list = st_strengths.get_strengths()
+    return render_template('strengths.html',
+                            strengths_list=strengths_list,
+                            data_num=len(strengths_list))
 
 @app.route('/notice')
 def notice():

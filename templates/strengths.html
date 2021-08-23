@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <title>SDVX-EXスコアツール</title>
+</head>
+<body>
+    <header class="site-header wrapper">
+        <div class="header">
+            <h1 class="appname">SDVX-EXスコアツール</h1>
+        </div>
+    </header>
+    <div class="strengths-list">
+        武器曲リスト
+        <table border="1">
+            <tr>
+                <th>順位</th>
+                <th>楽曲名</th>
+                <th>難易度</th>
+                <th>レベル</th>
+                <th>EXスコア</th>
+                <th>上位</th>
+            </tr>
+            {% for i in range(data_num) %}
+            <tr>
+                <td style="text-align: right;">{{ i+1 }}</td>
+                <td>{{ strengths_list[i]["楽曲名"] }}</td>
+                <td>{{ strengths_list[i]["難易度"] }}</td>
+                <td style="text-align: right;">{{ strengths_list[i]["レベル"] }}</td>
+                <td style="text-align: right;">{{ strengths_list[i]["EXスコア"] }}</td>
+                <td style="text-align: right;">{{ strengths_list[i]["上位%"] }}%</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <hr>
+
+    <hr>
+    <footer class="site-footer wrapper">
+        <div class="footer">
+        </div>
+    </footer>
+</body>
+</html>

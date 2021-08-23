@@ -9,7 +9,6 @@ def id_check(user):
 
 def try_signup(user, pw):
     user_data = st_data.load_user_data()
-    exscore_data = st_data.load_exscore_data()
 
     if user in user_data:
         return 'このユーザーIDは既に使われています'
@@ -19,6 +18,9 @@ def try_signup(user, pw):
         return 'ユーザーIDは1文字以上16文字以下にしてください'
     if len(pw) < 4:
         return 'パスワードは4文字以上にしてください'
+
+    exscore_data = st_data.load_exscore_data()
+    strengths_data = st_data.load_strengths_data()
 
     user_data[user] = {
         "user-name": user,
@@ -31,7 +33,9 @@ def try_signup(user, pw):
         "score-setting": True
     }
     exscore_data[user] = 0
+    strengths_data[user] = 999
 
     st_data.save_user_data(user_data)
     st_data.save_exscore_data(exscore_data)
+    st_data.save_strengths_data(strengths_data)
     return '成功'
