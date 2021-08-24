@@ -14,6 +14,7 @@ def update_score(score_txt_data):
     score_data = pd.read_csv(score_txt_data, sep=",")
 
     effect_id_data = st_data.load_effect_id_data()
+    rev_effect_id_data = st_data.load_rev_effect_id_data()
     user_data = st_data.load_user_data()
     exscore_data = st_data.load_exscore_data()
     hi_score_list = user_data[user]["hi-score"][0:]
@@ -24,6 +25,7 @@ def update_score(score_txt_data):
         level = score_data.loc[i, "楽曲レベル"]
         before_score = exscore_data.loc[effect_id_data[tune_name][diff]["id"], user]
         after_score = score_data.loc[i, "EXスコア"]
+        max_score = rev_effect_id_data.loc[effect_id_data[tune_name][diff]["id"], "MAX"]
         exscore_data.loc[effect_id_data[tune_name][diff]["id"], user] = score_data.loc[i, "EXスコア"]
 
         if before_score < after_score and before_score > 0:
@@ -34,6 +36,8 @@ def update_score(score_txt_data):
                 "更新前スコア":before_score.item(),
                 "更新後スコア":after_score.item()
             }
+            if max_score >= 0:
+                add_data["MAX"] = max_score.item()
             if len(hi_score_list) == 100:
                 hi_score_list = hi_score_list[1:]
             hi_score_list.append(add_data)
@@ -59,6 +63,8 @@ def update_score(score_txt_data):
                         "好敵手更新前スコア":before_score.item(),
                         "好敵手更新後スコア":after_score.item()
                     }
+                    if max_score >= 0:
+                        notice_data["MAX"] = max_score.item()
                     if len(user_data[rival]["notice"]) == 100:
                         user_data[rival]["notice"] = user_data[rival]["notice"][1:]
                     user_data[rival]["notice"].append(notice_data)
