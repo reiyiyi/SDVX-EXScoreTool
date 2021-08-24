@@ -52,6 +52,7 @@ def update_score(score_txt_data):
         if before_score < after_score:
             for rival in user_data[user]["rev-rival"]:
                 if before_score <= exscore_data.loc[effect_id_data[tune_name][diff]["id"], rival] and \
+                    before_score > 0 and \
                     after_score >= exscore_data.loc[effect_id_data[tune_name][diff]["id"], rival] and \
                     exscore_data.loc[effect_id_data[tune_name][diff]["id"], rival] > 0:
                     notice_data = {

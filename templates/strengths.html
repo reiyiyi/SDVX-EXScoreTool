@@ -23,6 +23,7 @@
                 <th>難易度</th>
                 <th>レベル</th>
                 <th>EXスコア</th>
+                <th>MAX-</th>
                 <th>上位</th>
             </tr>
             {% for i in range(data_num) %}
@@ -32,6 +33,7 @@
                 <td>{{ strengths_list[i]["難易度"] }}</td>
                 <td style="text-align: right;">{{ strengths_list[i]["レベル"] }}</td>
                 <td style="text-align: right;">{{ strengths_list[i]["EXスコア"] }}</td>
+                <td>MAX-{{ strengths_list[i]["MAX-"] }}</td>
                 <td style="text-align: right;">{{ strengths_list[i]["上位%"] }}%</td>
             </tr>
             {% endfor %}

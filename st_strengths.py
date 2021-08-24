@@ -25,6 +25,11 @@ def get_strengths():
             "EXスコア":exscore_data.loc[sort_data[i]["ID"], user],
             "上位%":'{:.2f}'.format(round(sort_data[i]["上位%"], 2))
         }
+        if rev_effect_id_data.loc[sort_data[i]["ID"], "MAX"] >= 0:
+            return_data[i]["MAX-"] = rev_effect_id_data.loc[sort_data[i]["ID"], "MAX"] - exscore_data.loc[sort_data[i]["ID"], user]
+        else:
+            return_data[i]["MAX-"] = "?"
+            
         if sort_data[i]["上位%"] > 200:
             return_data[i]["上位%"] = '---'
 
