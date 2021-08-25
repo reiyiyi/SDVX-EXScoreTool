@@ -26,7 +26,7 @@ def update_score(score_txt_data):
         before_score = exscore_data.loc[effect_id_data[tune_name][diff]["id"], user]
         after_score = score_data.loc[i, "EXスコア"]
         max_score = rev_effect_id_data.loc[effect_id_data[tune_name][diff]["id"], "MAX"]
-        exscore_data.loc[effect_id_data[tune_name][diff]["id"], user] = score_data.loc[i, "EXスコア"]
+        exscore_data.loc[effect_id_data[tune_name][diff]["id"], user] = int(score_data.loc[i, "EXスコア"])
 
         if before_score < after_score and before_score > 0:
             add_data = {
