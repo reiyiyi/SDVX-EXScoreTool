@@ -13,6 +13,12 @@ def update_score(score_txt_data):
     score_txt_data = StringIO(score_txt_data)
     score_data = pd.read_csv(score_txt_data, sep=",")
 
+    if (score_data.columns == ['楽曲名', '難易度', '楽曲レベル', 'クリアランク', 'スコアグレード', 'ハイスコア', 'EXスコア', 'プレー回数',
+       'クリア回数', 'ULTIMATE CHAIN', 'PERFECT']).sum() != 11:
+        return False
+    if score_data.isnull().values.sum() > 0:
+        return False
+
     effect_id_data = st_data.load_effect_id_data()
     rev_effect_id_data = st_data.load_rev_effect_id_data()
     user_data = st_data.load_user_data()
@@ -24,7 +30,7 @@ def update_score(score_txt_data):
         diff = score_data.loc[i, "難易度"]
         level = score_data.loc[i, "楽曲レベル"]
         before_score = exscore_data.loc[effect_id_data[tune_name][diff]["id"], user]
-        after_score = score_data.loc[i, "EXスコア"]
+        after_score = int(score_data.loc[i, "EXスコア"])
         max_score = rev_effect_id_data.loc[effect_id_data[tune_name][diff]["id"], "MAX"]
         exscore_data.loc[effect_id_data[tune_name][diff]["id"], user] = int(score_data.loc[i, "EXスコア"])
 
