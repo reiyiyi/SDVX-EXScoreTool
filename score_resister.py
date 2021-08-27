@@ -29,7 +29,7 @@ def update_score(score_txt_data):
         tune_name = score_data.loc[i, "楽曲名"]
         diff = score_data.loc[i, "難易度"]
         level = score_data.loc[i, "楽曲レベル"]
-        before_score = exscore_data.loc[effect_id_data[tune_name][diff]["id"], user]
+        before_score = int(exscore_data.loc[effect_id_data[tune_name][diff]["id"], user])
         after_score = int(score_data.loc[i, "EXスコア"])
         max_score = rev_effect_id_data.loc[effect_id_data[tune_name][diff]["id"], "MAX"]
         exscore_data.loc[effect_id_data[tune_name][diff]["id"], user] = int(score_data.loc[i, "EXスコア"])
@@ -39,8 +39,8 @@ def update_score(score_txt_data):
                 "楽曲名":tune_name,
                 "難易度":diff,
                 "レベル":level.item(),
-                "更新前スコア":before_score.item(),
-                "更新後スコア":after_score.item()
+                "更新前スコア":before_score,
+                "更新後スコア":after_score
             }
             if max_score >= 0:
                 add_data["MAX"] = max_score.item()
@@ -67,8 +67,8 @@ def update_score(score_txt_data):
                         "レベル":level.item(),
                         "好敵手名":user_data[user]["user-name"],
                         "スコア":exscore_data.loc[effect_id_data[tune_name][diff]["id"], rival].item(),
-                        "好敵手更新前スコア":before_score.item(),
-                        "好敵手更新後スコア":after_score.item()
+                        "好敵手更新前スコア":before_score,
+                        "好敵手更新後スコア":after_score
                     }
                     if max_score >= 0:
                         notice_data["MAX"] = max_score.item()
