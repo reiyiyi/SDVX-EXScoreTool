@@ -86,3 +86,17 @@ def save_strengths_data(save_data):
     save_data.to_csv(FILE_NAME, index=False)
     bucket.upload_file(FILE_NAME, BASE_DIR + FILE_NAME)
     bucket.upload_file(FILE_NAME, MIRROR_DIR + FILE_NAME)
+
+#ranking.csv
+def load_ranking_data():
+    FILE_NAME = 'ranking.csv'
+    bucket.download_file(BASE_DIR + FILE_NAME, FILE_NAME)
+    if not os.path.exists(FILE_NAME):
+        return []
+    return pd.read_csv(FILE_NAME)
+
+def save_ranking_data(save_data):
+    FILE_NAME = 'ranking.csv'
+    save_data.to_csv(FILE_NAME, index=False)
+    bucket.upload_file(FILE_NAME, BASE_DIR + FILE_NAME)
+    bucket.upload_file(FILE_NAME, MIRROR_DIR + FILE_NAME)

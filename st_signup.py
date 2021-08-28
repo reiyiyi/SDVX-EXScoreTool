@@ -21,6 +21,7 @@ def try_signup(user, pw):
 
     exscore_data = st_data.load_exscore_data()
     strengths_data = st_data.load_strengths_data()
+    ranking_data = st_data.load_ranking_data()
 
     user_data[user] = {
         "user-name": user,
@@ -34,8 +35,10 @@ def try_signup(user, pw):
     }
     exscore_data[user] = 0
     strengths_data[user] = 999
+    ranking_data[user] = -1
 
     st_data.save_user_data(user_data)
     st_data.save_exscore_data(exscore_data)
     st_data.save_strengths_data(strengths_data)
+    st_data.save_ranking_data(ranking_data)
     return '成功'
