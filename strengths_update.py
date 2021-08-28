@@ -30,5 +30,5 @@ for i in range(exscore_data.shape[0]):
         else:
             strengths_data.loc[i, sort_data[j]["ユーザーID"]] = (j + 1) / play_num * 100
 
-#st_data.save_strengths_data(strengths_data)
+st_data.save_strengths_data(strengths_data)
 st_data.save_ranking_data(ranking_data)
