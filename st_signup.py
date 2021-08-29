@@ -20,6 +20,7 @@ def try_signup(user, pw):
         return 'パスワードは4文字以上にしてください'
 
     exscore_data = st_data.load_exscore_data()
+    old_exscore_data = st_data.load_old_exscore_data()
     strengths_data = st_data.load_strengths_data()
     ranking_data = st_data.load_ranking_data()
 
@@ -34,11 +35,13 @@ def try_signup(user, pw):
         "score-setting": True
     }
     exscore_data[user] = 0
+    old_exscore_data[user] = 0
     strengths_data[user] = 999
     ranking_data[user] = -1
 
     st_data.save_user_data(user_data)
     st_data.save_exscore_data(exscore_data)
+    st_data.save_old_exscore_data(old_exscore_data)
     st_data.save_strengths_data(strengths_data)
     st_data.save_ranking_data(ranking_data)
     return '成功'

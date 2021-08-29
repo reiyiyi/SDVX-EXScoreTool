@@ -5,6 +5,7 @@ import st_login
 import st_data
 import st_signup
 import st_strengths
+import score_check
 import st_settings
 import st_notice
 import score_resister
@@ -98,6 +99,36 @@ def recently_hiscore():
                             hi_score_list=hi_score_data,
                             data_num=len(hi_score_data),
                             mode='直近')
+
+@app.route('/myscore')
+def myscore():
+    if not st_login.is_login():
+        return redirect('/login')
+    return render_template('myscore.html')
+
+@app.route('/myscore/<level>')
+def level_myscore(level):
+    if not st_login.is_login():
+        return redirect('/login')
+    level = int(level)
+    if level < 1 or level > 20:
+        return redirect('/')
+    my_score_data = score_check.get_my_score_data(level)
+    return render_template('level_myscore.html',
+                            level=level,
+                            my_score_list=my_score_data)
+
+@app.route('/ranking/<effect_id>')
+def ranking(effect_id):
+    if not st_login.is_login():
+        return redirect('/login')
+    effect_id = int(effect_id)
+    effect_data, ranking_data = score_check.get_ranking_data(effect_id)
+    if type(ranking_data) == type(False):
+        return redirect('/')
+    return render_template('ranking.html',
+                            effect_data=effect_data,
+                            ranking_list=ranking_data)
 
 @app.route('/strengths')
 def strengths():

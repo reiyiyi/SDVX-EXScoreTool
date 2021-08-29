@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <title>SDVX-EXスコアツール</title>
+</head>
+<body>
+    <header class="site-header wrapper">
+        <div class="header">
+            <h1 class="appname">SDVX-EXスコアツール</h1>
+        </div>
+    </header>
+    <div class="myscore-list">
+        {{ level }}のスコア
+        <table border="1">
+            <tr>
+                <th>楽曲名</th>
+                <th>難易度</th>
+                <th>EXスコア</th>
+                <th>MAX-</th>
+                <th>ランキング</th>
+            </tr>
+            {% for data in my_score_list %}
+            <tr>
+                <td>{{ data["楽曲名"] }}</td>
+                <td>{{ data["難易度"] }}</td>
+                <td style="text-align: right;">{{ data["EXスコア"] }}</td>
+                <td>MAX-{{ data["MAX-"] }}</td>
+                <td style="text-align: right;"><a href="/ranking/{{ data['effect_id'] }}">ランキングへ</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <hr>
+
+    <hr>
+    <footer class="site-footer wrapper">
+        <div class="footer">
+        </div>
+    </footer>
+</body>
+</html>

@@ -32,3 +32,4 @@ for i in range(exscore_data.shape[0]):
 
 st_data.save_strengths_data(strengths_data)
 st_data.save_ranking_data(ranking_data)
+st_data.save_old_exscore_data(exscore_data)

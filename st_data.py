@@ -57,6 +57,20 @@ def save_exscore_data(save_data):
     bucket.upload_file(FILE_NAME, BASE_DIR + FILE_NAME)
     bucket.upload_file(FILE_NAME, MIRROR_DIR + FILE_NAME)
 
+#old_EXscore.csv
+def load_old_exscore_data():
+    FILE_NAME = 'old_EXscore.csv'
+    bucket.download_file(BASE_DIR + FILE_NAME, FILE_NAME)
+    if not os.path.exists(FILE_NAME):
+        return []
+    return pd.read_csv(FILE_NAME)
+
+def save_old_exscore_data(save_data):
+    FILE_NAME = 'old_EXscore.csv'
+    save_data.to_csv(FILE_NAME, index=False)
+    bucket.upload_file(FILE_NAME, BASE_DIR + FILE_NAME)
+    bucket.upload_file(FILE_NAME, MIRROR_DIR + FILE_NAME)
+
 #user_data.json
 def load_user_data():
     FILE_NAME = 'user_data.json'
