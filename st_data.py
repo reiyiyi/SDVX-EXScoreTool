@@ -114,3 +114,19 @@ def save_ranking_data(save_data):
     save_data.to_csv(FILE_NAME, index=False)
     bucket.upload_file(FILE_NAME, BASE_DIR + FILE_NAME)
     bucket.upload_file(FILE_NAME, MIRROR_DIR + FILE_NAME)
+
+#resister_error_data.json
+def load_resister_error_data():
+    FILE_NAME = 'resister_error_data.json'
+    bucket.download_file(BASE_DIR + FILE_NAME, FILE_NAME)
+    if not os.path.exists(FILE_NAME):
+        return {}
+    with open(FILE_NAME, encoding='utf-8') as f:
+        return json.load(f)
+
+def save_resister_error_data(save_data):
+    FILE_NAME = 'resister_error_data.json'
+    with open(FILE_NAME, 'w', encoding='utf-8') as f:
+        json.dump(save_data, f, ensure_ascii=False, indent=4)
+    bucket.upload_file(FILE_NAME, BASE_DIR + FILE_NAME)
+    bucket.upload_file(FILE_NAME, MIRROR_DIR + FILE_NAME)

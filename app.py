@@ -82,12 +82,13 @@ def hiscore():
     hi_score_data = []
     if 'score' in request.form:
         score_txt_data = str(request.form['score'])
-        hi_score_data = score_resister.update_score(score_txt_data)
+        hi_score_data, resister_error_data = score_resister.update_score(score_txt_data)
         if type(hi_score_data) == type(False):
             return render_template('resister.html')
     return render_template('hiscore.html',
                             hi_score_list=hi_score_data,
                             data_num=len(hi_score_data),
+                            resister_error_list=resister_error_data,
                             mode='今回')
 
 @app.route('/hiscore')
@@ -98,6 +99,7 @@ def recently_hiscore():
     return render_template('hiscore.html',
                             hi_score_list=hi_score_data,
                             data_num=len(hi_score_data),
+                            resister_error_list=[],
                             mode='直近')
 
 @app.route('/myscore')

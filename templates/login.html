@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <link rel="stylesheet" media="screen and (max-width:768px)" href="{{ url_for('static', filename = 'css/sp-style.css') }}">
+    <link rel="stylesheet" media="screen and (min-width:769px)" href="{{ url_for('static', filename = 'css/style.css') }}">
     <title>SDVX-EXスコアツール</title>
 </head>
 <body>
     <header class="site-header wrapper">
         <div class="header">
-            <h1 class="appname">SDVX-EXスコアツール</h1>
+            <a href="/" class="appname">SDVX-EXスコアツール</a>
         </div>
     </header>
     <div class="login-form">
@@ -36,28 +37,15 @@
     <hr>
     <h2>更新などのお知らせ</h2>
     <p>
-        本サービスにて、新機能「スコア確認」を追加しました。また、この「スコア確認」から譜面ごとの""EXスコアランキング""を確認することができるようにしました。
-        詳しくは上記の「使い方」から見ることができます。
-        引き続き、本サービスをよろしくお願いいたします。
+        [重要]今後のお知らせにつきましては、主にTwitterの本サービスの運営用アカウント(<a href="https://twitter.com/sdvx_EXtool">@sdvx_EXtool</a>)
+        からお知らせいたします。そのため、Twitterアカウントをお持ちの方は、こちらのアカウントをフォローしていただけると幸いです。
     </p>
-    <hr>
     <p>
-        本サービスの機能「更新スコア確認」「通知」「武器曲」にて、一部の譜面においてMAX-〇〇を見ることができるようにしました。
-        ただし、見ることができるのは今回の本サービス更新以降でのスコア登録時に追加されたデータに限ります、ご了承ください。
-        また、NOV,ADV譜面に関してはまだデータが揃っていないため、見ることができる譜面は少ないですが、
-        EXH,MXM,INF,GRV,HVN,VVD譜面に関しては今のところ、全ての譜面において見ることができることを確認しております。
-        万一、MAXの値が間違っている譜面を発見した場合はご連絡いただけると幸いです。
+        また、スコア登録時において、以前では私の楽曲データに存在しない楽曲がスコアデータに含まれる際にエラーとなる仕様でしたが、
+        今回の更新から、その際にエラーになることを回避して、その楽曲の情報を「今回のEXスコア更新」ページにて記載する仕様に変更いたしました。
+        以前の仕様が原因で、本サービスを利用してくださっている方々には大変ご迷惑をお掛けいたしました、申し訳ありません。
+        そして、レイアウトを一部変更いたしました。
         引き続き、本サービスをよろしくお願いいたします。
-    </p>
-    <hr>
-    <p>
-        本サービスにて、新機能「武器曲」を追加しました。この機能の概要は上記の「使い方」から見ることができます。
-        引き続き、本サービスをよろしくお願いいたします。
-    </p>
-    <hr>
-    <p>
-        本サービスの「スコア登録」にて、Help me， CODYYYYYY!![GRV]か、ごりらがいるんだ ～かぼちゃが歌ってみたver～[INF]のプレイデータが含まれるスコアデータの登録が行なえないという不具合がありました、
-        誠に申し訳ございません。この不具合は現在修正されております。引き続き、本サービスをよろしくお願いいたします。
     </p>
     <hr>
     <footer class="site-footer wrapper">

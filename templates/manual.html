@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <link rel="stylesheet" media="screen and (max-width:768px)" href="{{ url_for('static', filename = 'css/sp-style.css') }}">
+    <link rel="stylesheet" media="screen and (min-width:769px)" href="{{ url_for('static', filename = 'css/style.css') }}">
     <title>SDVX-EXスコアツール</title>
 </head>
 <body>
     <header class="site-header wrapper">
         <div class="header">
-            <h1 class="appname">SDVX-EXスコアツール</h1>
+            <a href="/" class="appname">SDVX-EXスコアツール</a>
         </div>
     </header>
     <h2>SDVX-EXスコアツールの使い方や概要</h2>
@@ -106,12 +107,15 @@
             現時点では、デバッグとプログラム修正をメインに本サービスを改良しています。本サービスを問題なく公開できそうだと判断できた場合は、本サービスの外観の改良や機能追加を考えております。
             是非とも本サービス、「SDVX-EXスコアツール」をよろしくお願いいたします。
         </p>
+        <hr>
+        <p>
+            <p>developed by <a href="https://twitter.com/Re_gi_A">@Re_gi_A</a></p>
+        </p>
     </div>
     <hr>
 
     <footer class="site-footer wrapper">
         <div class="footer">
-            <p>developed by <a href="https://twitter.com/Re_gi_A">@Re_gi_A</a></p>
         </div>
         <hr>
     </footer>

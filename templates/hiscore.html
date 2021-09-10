@@ -5,17 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <link rel="stylesheet" media="screen and (max-width:768px)" href="{{ url_for('static', filename = 'css/sp-style.css') }}">
+    <link rel="stylesheet" media="screen and (min-width:769px)" href="{{ url_for('static', filename = 'css/style.css') }}">
     <title>SDVX-EXスコアツール</title>
 </head>
 <body>
     <header class="site-header wrapper">
         <div class="header">
-            <h1 class="appname">SDVX-EXスコアツール</h1>
+            <a href="/" class="appname">SDVX-EXスコアツール</a>
         </div>
     </header>
     <div class="hiscore">
-        <p>{{mode}}のEXスコア更新</p>
+        {% if resister_error_list|length > 0 %}
+        <p>
+            !! 一部の譜面において、スコアデータを登録することができませんでした。
+            登録することができなかった譜面の情報(最大100件)を下に記載させていただきます。
+            この譜面の情報につきましてはログとして記録しており、こちらのデータに不備が見つかった場合は直ちに修正いたします。
+            なお、「今回のEXスコア更新」はいつも通り下に記載しております。
+        </p>
+        <hr>
+        {% for error_data in resister_error_list %}
+        <p>{{ error_data["楽曲名"] }}[{{ error_data["難易度"] }}]</p>
+        {% endfor %}
+        <hr>
+        {% endif %}
+        <h3>{{mode}}のEXスコア更新</h3>
         {% for i in range(data_num) %}
         <hr>
         <p>{{ hi_score_list[-i-1]["楽曲名"] }}[{{ hi_score_list[-i-1]["難易度"] }} {{ hi_score_list[-i-1]["レベル"] }}]</p>

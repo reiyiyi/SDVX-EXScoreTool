@@ -5,13 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <link rel="stylesheet" media="screen and (max-width:768px)" href="{{ url_for('static', filename = 'css/sp-style.css') }}">
+    <link rel="stylesheet" media="screen and (min-width:769px)" href="{{ url_for('static', filename = 'css/style.css') }}">
     <title>SDVX-EXスコアツール</title>
 </head>
 <body>
     <header class="site-header wrapper">
         <div class="header">
-            <h1 class="appname">SDVX-EXスコアツール</h1>
+            <a href="/" class="appname">SDVX-EXスコアツール</a>
         </div>
     </header>
     <div class="myscore-list">

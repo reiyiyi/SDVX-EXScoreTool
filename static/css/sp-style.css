@@ -54,8 +54,8 @@ hr {
     color: white;
     background: #000000;
     padding: 0.5em 0;
-    width: 30%;
-    margin: 4px;
+    width: 80%;
+    margin: 2px 0;
     display: inline-block;
     text-align: center;
     text-decoration: none;
@@ -63,7 +63,10 @@ hr {
 
 .inline {
     text-align: center;
-    margin: 0 5rem;
+}
+
+.signup-form {
+    text-align: center;
 }
 
 .rival-settings {

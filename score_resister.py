@@ -6,6 +6,8 @@ import st_login
 
 def update_score(score_txt_data):
     return_data = []
+    return_error_data = []
+    resister_error_data = st_data.load_resister_error_data()
     user = st_login.get_user_id()
 
     idx = score_txt_data.index('楽')
@@ -29,6 +31,37 @@ def update_score(score_txt_data):
         tune_name = score_data.loc[i, "楽曲名"]
         diff = score_data.loc[i, "難易度"]
         level = score_data.loc[i, "楽曲レベル"]
+
+        if tune_name not in effect_id_data:
+            add_error_data = {
+                "楽曲名":tune_name,
+                "難易度":diff,
+                "ユーザー名":user,
+                "原因":"楽曲名"
+            }
+            if len(return_error_data) >= 100:
+                return_error_data = return_error_data[-99:]
+            if len(resister_error_data) >= 1000:
+                resister_error_data = resister_error_data[-999:]
+            return_error_data.append(add_error_data)
+            resister_error_data.append(add_error_data)
+            continue
+        
+        if diff not in effect_id_data[tune_name]:
+            add_error_data = {
+                "楽曲名":tune_name,
+                "難易度":diff,
+                "ユーザー名":user,
+                "原因":"難易度"
+            }
+            if len(return_error_data) >= 100:
+                return_error_data = return_error_data[-99:]
+            if len(resister_error_data) >= 1000:
+                resister_error_data = resister_error_data[-999:]
+            return_error_data.append(add_error_data)
+            resister_error_data.append(add_error_data)
+            continue
+
         before_score = int(exscore_data.loc[effect_id_data[tune_name][diff]["id"], user])
         after_score = int(score_data.loc[i, "EXスコア"])
         max_score = rev_effect_id_data.loc[effect_id_data[tune_name][diff]["id"], "MAX"]
@@ -80,8 +113,9 @@ def update_score(score_txt_data):
 
     st_data.save_user_data(user_data)
     st_data.save_exscore_data(exscore_data)
+    st_data.save_resister_error_data(resister_error_data)
 
-    return return_data
+    return return_data, return_error_data
 
 def get_hi_score_data():
     user_data = st_data.load_user_data()
