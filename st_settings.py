@@ -26,3 +26,7 @@ def get_settings():
     user_name = user_data[user]["user-name"]
     score_setting = user_data[user]["score-setting"]
     return user_name, score_setting
+
+def get_rival_settings(rival):
+    user_data = st_data.load_user_data()
+    return user_data[rival]["score-setting"]

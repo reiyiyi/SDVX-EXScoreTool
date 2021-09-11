@@ -27,7 +27,11 @@
             {% for i in range(100) %}
             <tr>
                 <td style="text-align: right;">{{ i+1 }}位</td>
-                <td>{{ ranking_list[i]["ユーザー名"] }}</td>
+                {% if ranking_list[i]["ユーザーID"] != "[SECRET]" and ranking_list[i]["ユーザーID"] != "---" %}
+                <td><a href='/user/{{ranking_list[i]["ユーザーID"]}}' class="ranking-button">{{ ranking_list[i]["ユーザー名"] }}</a></td>
+                {% else %}
+                <td style="text-align: center;">{{ ranking_list[i]["ユーザー名"] }}</td>
+                {% endif %}
                 <td style="text-align: right;">{{ ranking_list[i]["EXスコア"] }}</td>
                 <td>MAX-{{ ranking_list[i]["MAX-"] }}</td>
             </tr>

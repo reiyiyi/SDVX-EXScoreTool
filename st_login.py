@@ -1,3 +1,4 @@
+from rival_resister import is_resistered
 from flask import session, redirect
 import st_data
 
@@ -27,3 +28,14 @@ def get_user_name():
     if is_login():
         return user_data[session['login']]["user-name"]
     return 'not login'
+
+def get_rival_user_name(user):
+    user_data = st_data.load_user_data()
+    if is_resistered(user):
+        return user_data[user]["user-name"]
+    else:
+        return 'no data'
+
+def is_resistered(user):
+    user_data = st_data.load_user_data()
+    return user in user_data

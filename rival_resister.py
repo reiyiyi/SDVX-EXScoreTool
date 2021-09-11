@@ -8,11 +8,9 @@ def is_exist(rival):
         return False
     return True
 
-def follow_rival():
+def follow_rival(rival):
     user_data = st_data.load_user_data()
     user = st_login.get_user_id()
-    rival = user_data[user]["search-rival"]
-    user_data[user]["search-rival"] = ""
     user_data[user]["rival"][rival] = False
     user_data[rival]["rev-rival"][user] = False
     if rival in user_data[user]["rev-rival"]:
@@ -22,10 +20,9 @@ def follow_rival():
         user_data[rival]["rival"][user] = True
     st_data.save_user_data(user_data)
 
-def remove_rival():
+def remove_rival(rival):
     user_data = st_data.load_user_data()
     user = st_login.get_user_id()
-    rival = user_data[user]["search-rival"]
     user_data[user]["rival"].pop(rival)
     user_data[rival]["rev-rival"].pop(user)
     if rival in user_data[user]["rev-rival"]:
@@ -62,8 +59,7 @@ def cancel():
     user_data[user]["search-rival"] = ""
     st_data.save_user_data(user_data)
 
-def is_resistered():
+def is_resistered(rival):
     user_data = st_data.load_user_data()
     user = st_login.get_user_id()
-    rival = user_data[user]["search-rival"]
     return rival in user_data[user]["rival"]

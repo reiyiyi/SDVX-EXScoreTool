@@ -18,9 +18,32 @@ app.secret_key = os.environ["APP_SECRET_KEY"]
 def index():
     if not st_login.is_login():
         return redirect('/login')
-    user = st_login.get_user_name()
-    return render_template('index.html',
-                            user=user)
+    user = st_login.get_user_id()
+    return redirect('/user/' + user)
+
+@app.route('/user/<user>')
+def user_page(user):
+    if not st_login.is_login():
+        return redirect('/login')
+    if st_login.is_resistered(user):
+        user_name = st_login.get_rival_user_name(user)
+        spuc_data, num_data = score_check.get_spuc_data(user)
+        if user == st_login.get_user_id():
+            return render_template('index.html',
+                            user=user,
+                            user_name=user_name,
+                            spuc_data=spuc_data,
+                            num_data=num_data)
+        else:
+            if not st_settings.get_rival_settings(user):
+                spuc_data = ["---"] * 20
+            return render_template('user_page.html',
+                            user=user,
+                            user_name=user_name,
+                            is_resistered=rival_resister.is_resistered(user),
+                            spuc_data=spuc_data,
+                            num_data=num_data)
+    return redirect('/')
 
 @app.route('/manual')
 def manual():
@@ -147,7 +170,7 @@ def notice():
         return redirect('/login')
     notice_list = st_notice.get_notice()
     return render_template('notice.html',
-                            notice_list=notice_list[0:],
+                            notice_list=notice_list,
                             data_num=len(notice_list))
 
 @app.route('/rival')
@@ -178,33 +201,30 @@ def rival_follower():
 def rival_search():
     if not st_login.is_login():
         return redirect('/login')
-    rival_resister.cancel()
     return render_template('rival-search.html')
 
-@app.route('/rival/search/follow', methods=['POST'])
+@app.route('/rival/search/try', methods=['POST'])
 def follow_rival():
     if not st_login.is_login():
         return redirect('/login')
     search_id = request.form.get('search-id')
     if not rival_resister.is_exist(search_id):
         return redirect('/rival/search')
-    rival_name = rival_resister.get_rival_name(search_id)
-    text_data = 'を好敵手に登録'
-    if rival_resister.is_resistered():
-        text_data = 'の好敵手設定を解除'
-    return render_template('rival-resister.html',
-                            rival_name=rival_name,
-                            text_data=text_data)
+    return redirect('/user/' + search_id)
 
-@app.route('/rival/search/follow/try', methods=['GET'])
-def try_follow_rival():
+@app.route('/rival/resister/<rival>')
+def try_follow_rival(rival):
     if not st_login.is_login():
         return redirect('/login')
-    if rival_resister.is_resistered():
-        rival_resister.remove_rival()
-        return redirect('/rival/search')
-    rival_resister.follow_rival()
-    return redirect('/rival/search')
+    if not rival_resister.is_exist(rival):
+        return redirect('/')
+    if rival == st_login.get_user_id():
+        return redirect('/')
+    if rival_resister.is_resistered(rival):
+        rival_resister.remove_rival(rival)
+        return redirect('/user/' + rival)
+    rival_resister.follow_rival(rival)
+    return redirect('/user/' + rival)
 
 @app.route('/settings')
 def settings():

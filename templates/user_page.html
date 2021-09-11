@@ -15,21 +15,19 @@
             <a href="/" class="appname">SDVX-EXスコアツール</a>
         </div>
     </header>
-    <p>こんにちは、{{user_name}}さん</p>
+    <p>{{user_name}}さんのユーザーページ</p>
     <hr>
     <p>ユーザーID: {{ user }}</p>
     <p>ユーザー名: {{ user_name }}</p>
     <hr>
     <div class="inline">
-        <a href="{{url_for('resister')}}" class="button">スコア登録</a>
-        <a href="{{url_for('recently_hiscore')}}" class="button">更新スコア確認</a>
-        <a href="{{url_for('myscore')}}" class="button">スコア確認</a>
-        <a href="{{url_for('strengths')}}" class="button">武器曲</a>
-        <a href="{{url_for('rival')}}" class="button">好敵手</a>
-        <a href="{{url_for('notice')}}" class="button">通知</a>
-        <a href="{{url_for('settings')}}" class="button">設定</a>
-        <a href="{{url_for('logout')}}" class="button">ログアウト</a>
-        <a href="{{url_for('manual')}}" class="button">使い方</a>
+        {% if is_resistered %}
+        <p>現在、あなたは{{user_name}}さんを好敵手に登録しています</p>
+        <a href="/rival/resister/{{user}}" class="button">好敵手解除</a>
+        {% else %}
+        <p>現在、あなたは{{user_name}}さんを好敵手に登録していません</p>
+        <a href="/rival/resister/{{user}}" class="button">好敵手登録</a>
+        {% endif %}
     </div>
     <hr>
     <div class="spuc-list">

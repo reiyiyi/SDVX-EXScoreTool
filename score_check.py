@@ -38,6 +38,7 @@ def get_ranking_data(effect_id):
         "レベル":rev_effect_id_data.loc[effect_id, "レベル"]
     }
     return_ranking_data = [{
+        "ユーザーID":"---",
         "ユーザー名":"---",
         "EXスコア":"---",
         "MAX-":"?"
@@ -48,11 +49,28 @@ def get_ranking_data(effect_id):
             continue
         user_rank = ranking_data.loc[effect_id, user]
         if user_data[user]["score-setting"]:
+            return_ranking_data[user_rank - 1]["ユーザーID"] = user
             return_ranking_data[user_rank - 1]["ユーザー名"] = user_data[user]["user-name"]
         else:
+            return_ranking_data[user_rank - 1]["ユーザーID"] = "[SECRET]"
             return_ranking_data[user_rank - 1]["ユーザー名"] = "[SECRET]"
         return_ranking_data[user_rank - 1]["EXスコア"] = old_exscore_data.loc[effect_id, user]
         if rev_effect_id_data.loc[effect_id, "MAX"] >= 0:
             return_ranking_data[user_rank - 1]["MAX-"] = rev_effect_id_data.loc[effect_id, "MAX"] - old_exscore_data.loc[effect_id, user]
 
     return return_effect_data, return_ranking_data
+
+def get_spuc_data(user):
+    rev_effect_id_data = st_data.load_rev_effect_id_data()
+    exscore_data = st_data.load_exscore_data()
+
+    return_spuc_data = [0] * 20
+    return_num_data = [0] * 20
+    for i in range(rev_effect_id_data.shape[0]):
+        if rev_effect_id_data.loc[i, "難易度"] in ["NOVICE", "ADVANCED"]:
+            continue
+        if exscore_data.loc[i, user] == rev_effect_id_data.loc[i, "MAX"]:
+            return_spuc_data[rev_effect_id_data.loc[i, "レベル"] - 1] += 1
+        return_num_data[rev_effect_id_data.loc[i, "レベル"] - 1] += 1
+            
+    return return_spuc_data, return_num_data
