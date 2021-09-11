@@ -18,9 +18,11 @@
     <div class="myscore">
         <p>レベルを選択してください。</p>
         <br/>
-        {% for i in range(20) %}
-        <a href="/myscore/{{ i + 1 }}">{{ i + 1 }}</a>
-        {% endfor %}
+        <div class="level-inline">
+            {% for i in range(20) %}
+            <a href="/myscore/{{ i + 1 }}" class="level-button">{{ i + 1 }}</a>
+            {% endfor %}
+        </div>
     </div>
     <hr>
 

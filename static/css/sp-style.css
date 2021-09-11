@@ -72,11 +72,31 @@ hr {
     text-decoration: none;
 }
 
+.level-button {
+    color: white;
+    background: #000000;
+    font-weight: bolder;
+    padding: 0.5em 0;
+    width: 18%;
+    margin: 2px 0;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+}
+
 .inline {
     text-align: center;
 }
 
 .signup-form {
+    text-align: center;
+}
+
+.rival-inline {
+    text-align: center;
+}
+
+.level-inline {
     text-align: center;
 }
 
