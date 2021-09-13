@@ -72,6 +72,17 @@ hr {
     text-decoration: none;
 }
 
+.to-ranking-button {
+    color: blue;
+    background: white;
+    font-weight: bolder;
+    padding: 0.5em 0;
+    width: 100%;
+    display: inline-block;
+    text-align: left;
+    text-decoration: none;
+}
+
 .level-button {
     color: white;
     background: #000000;

@@ -19,6 +19,7 @@ def get_strengths():
     return_data = [dict() for _ in range(len(sort_data))]
     for i in range(len(sort_data)):
         return_data[i] = {
+            "ID":sort_data[i]["ID"],
             "楽曲名":rev_effect_id_data.loc[sort_data[i]["ID"], "楽曲名"],
             "難易度":rev_effect_id_data.loc[sort_data[i]["ID"], "難易度"],
             "レベル":rev_effect_id_data.loc[sort_data[i]["ID"], "レベル"],

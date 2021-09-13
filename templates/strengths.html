@@ -16,7 +16,8 @@
         </div>
     </header>
     <div class="strengths-list">
-        武器曲リスト
+        <p>武器曲リスト</p>
+        <p>(楽曲名をクリックすることで、その楽曲の難易度の譜面のランキングページにアクセスすることができるようになりました)</p>
         <table border="1">
             <tr>
                 <th>順位</th>
@@ -30,7 +31,7 @@
             {% for i in range(data_num) %}
             <tr>
                 <td style="text-align: right;">{{ i+1 }}</td>
-                <td>{{ strengths_list[i]["楽曲名"] }}</td>
+                <td><a href="/ranking/{{ strengths_list[i]['ID'] }}" class="to-ranking-button">{{ strengths_list[i]["楽曲名"] }}</a></td>
                 <td>{{ strengths_list[i]["難易度"] }}</td>
                 <td style="text-align: right;">{{ strengths_list[i]["レベル"] }}</td>
                 <td style="text-align: right;">{{ strengths_list[i]["EXスコア"] }}</td>
