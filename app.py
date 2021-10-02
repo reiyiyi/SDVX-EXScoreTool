@@ -32,8 +32,8 @@ def user_page(user):
             return render_template('index.html',
                             user=user,
                             user_name=user_name,
-                            spuc_data=spuc_data,
-                            num_data=num_data)
+                            spuc_data=spuc_data[6:],
+                            num_data=num_data[6:])
         else:
             if not st_settings.get_rival_settings(user):
                 spuc_data = ["---"] * 20
@@ -41,8 +41,8 @@ def user_page(user):
                             user=user,
                             user_name=user_name,
                             is_resistered=rival_resister.is_resistered(user),
-                            spuc_data=spuc_data,
-                            num_data=num_data)
+                            spuc_data=spuc_data[6:],
+                            num_data=num_data[6:])
     return redirect('/')
 
 @app.route('/manual')
