@@ -1,12 +1,12 @@
 {%- extends "layout.html" %}
 {%- block content %}
-    <div class="logout-form">
-        <p>ログアウトしますか？</p>
+    <div class="login-form container">
+        <div class="bd-callout bd-callout-warning">
+            ログアウトしますか？
+        </div>
         <div class="inline">
-            <a href="{{url_for('try_logout')}}" class="button">はい</a>
-            <a href="{{url_for('index')}}" class="button">いいえ</a>
+            <a href="{{url_for('try_logout')}}" class="btn btn-success">はい</a>
+            <a href="{{url_for('index')}}" class="btn btn-secondary">いいえ</a>
         </div>
     </div>
-
-    <hr>
 {%- endblock %}

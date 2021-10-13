@@ -1,36 +1,38 @@
 {%- extends "layout.html" %}
 {%- block content %}
-    <div class="login-form">
-        <form action="/login/try" method="POST"
-                class="pure-form pure-form-stacked">
-            <legend>ログインしてください</legend>
-            <fieldset>
-                <label for="user">ユーザーID</label>
-                <input type="text" name="user" id="user"><br/>
-                <label for="pw">パスワード</label>
-                <input type="password" name="pw" id="pw"><br/>
-                <button type="submit"
-                        class="pure-button pure-button-primary">
-                    ログイン</button>
-            </fieldset>
+    <div class="login-form container">
+        <div class="bd-callout bd-callout-warning">
+            ログインしてください
+        </div>
+
+        <form action="/login/try" method="POST">
+            <div class="mb-3">
+              <label for="user" class="form-label">ユーザーID</label>
+              <input type="text" name="user" id="user" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="pw" class="form-label">パスワード</label>
+              <input type="password" class="form-control" id="pw">
+            </div>
+            <button type="submit" class="btn btn-primary">ログイン</button>
+            <a href="{{url_for('signup')}}" class="btn btn-success">新規登録はこちらから</a>
         </form>
+        
+        <hr>
+
+        <div class="card">
+            <h3 class="card-header">【重要】更新などのお知らせ</h3>
+            <div class="card-body">
+                <p class="card-text">
+                    今後につきましては、主にTwitterの本サービスの運営用アカウント(<a href="https://twitter.com/sdvx_EXtool">@sdvx_EXtool</a>)からお知らせいたします。
+                    そのため、Twitterアカウントをお持ちの方は、こちらのアカウントをフォローしていただけると幸いです。
+                </p>
+                <p class="card-text">
+                    また、スコア登録時において、以前では私の楽曲データに存在しない楽曲がスコアデータに含まれる際にエラーとなる仕様でしたが、
+                    今回の更新から、その際にエラーになることを回避して、その楽曲の情報を「今回のEXスコア更新」ページにて記載する仕様に変更いたしました。
+                    以前の仕様が原因で、本サービスを利用してくださっている方々には大変ご迷惑をお掛けいたしました、申し訳ありません。
+                    引き続き、本サービスをよろしくお願いいたします。
+                </p>
+          </div>
     </div>
-    <div class="signup-form">
-        <a href="{{url_for('signup')}}" class="button">新規登録はこちらから</a>
-        <a href="{{url_for('manual')}}" class="button">使い方</a>
-    </div>
-    <hr>
-    <h2>更新などのお知らせ</h2>
-    <p>
-        [重要]今後のお知らせにつきましては、主にTwitterの本サービスの運営用アカウント(<a href="https://twitter.com/sdvx_EXtool">@sdvx_EXtool</a>)
-        からお知らせいたします。そのため、Twitterアカウントをお持ちの方は、こちらのアカウントをフォローしていただけると幸いです。
-    </p>
-    <p>
-        また、スコア登録時において、以前では私の楽曲データに存在しない楽曲がスコアデータに含まれる際にエラーとなる仕様でしたが、
-        今回の更新から、その際にエラーになることを回避して、その楽曲の情報を「今回のEXスコア更新」ページにて記載する仕様に変更いたしました。
-        以前の仕様が原因で、本サービスを利用してくださっている方々には大変ご迷惑をお掛けいたしました、申し訳ありません。
-        そして、レイアウトを一部変更いたしました。
-        引き続き、本サービスをよろしくお願いいたします。
-    </p>
-    <hr>
 {%- endblock %}
