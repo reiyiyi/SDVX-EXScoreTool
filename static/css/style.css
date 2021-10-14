@@ -9,16 +9,6 @@ body {
     -webkit-text-size-adjust: 100%;
 }
 
-.wrapper {
-    width: 100%;
-    background-color: rgb(148, 251, 255);
-}
-
-.header {
-    max-width: 800px;
-    padding: 1px;
-}
-
 .appname {
     padding-left: 2%;
     color: rgb(255, 255, 255);
@@ -108,8 +98,31 @@ hr {
     text-align: center;
 }
 
-.footer{
-    margin: auto;
-    max-width: 800px;
-    padding: 10px;
+.bd-callout+.bd-callout {
+    margin-top: -.25rem;
+}
+
+.bd-callout {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #e9ecef;
+    border-left-width: .25rem;
+    border-radius: .25rem;
+}
+
+.bd-callout-info {
+    border-left-color: #5bc0de;
+}
+
+.bd-callout-warning {
+    border-left-color: #f0ad4e;
+}
+
+.bd-callout-danger {
+    border-left-color: #d9534f;
+}
+
+.form-control {
+    width: initial;
 }
