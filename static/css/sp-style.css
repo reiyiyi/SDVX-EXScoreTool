@@ -22,10 +22,6 @@ body {
     text-decoration: none;
 }
 
-th, td {
-    padding: 6px;
-}
-
 hr {
     margin: 1rem 0;
 }
@@ -99,6 +95,14 @@ hr {
 
 .rival-settings {
     text-align: center;
+}
+
+.myscore-table {
+    font-size: 10px;
+}
+
+.table-tunename {
+    width: 35%;
 }
 
 .bd-callout {
