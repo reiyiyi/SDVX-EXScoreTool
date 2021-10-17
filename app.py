@@ -75,7 +75,7 @@ def try_signup():
     if mode == '成功':
         return redirect('/login')
     return render_template('signup_error.html',
-                            mode='hoge')
+                            mode=mode)
     #ユーザデータ
 
 @app.route('/logout')
