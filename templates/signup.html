@@ -1,0 +1,36 @@
+{%- extends "layout.html" %}
+{%- block content %}
+    <div class="sign-in-form container">
+        <div class="bd-callout bd-callout-info">
+            アカウント登録のため、ユーザー名とパスワードを入力してください
+        </div>
+
+        <form action="/login/signup/try" method="POST">
+            <label for="user" class="form-label">ユーザーID</label>
+            <div class="mb-3">
+                <input type="text" name="user" id="user" class="form-control">
+                <span class="invalid-feedback">項目を入力してください.</span>
+                <div id="userHelpBlock" class="form-text">
+                    1~16文字以下、英数字とアンダーバー(_)のみ使用可能。
+                </div>
+            </div>
+            <label for="pw" class="form-label">パスワード</label>
+            <div class="mb-3">
+                <div class="input-group">
+                    <input type="password" name="pw" id="pw" class="form-control">
+                    <span class="input-group-text view-password" onclick="pushHideButton()">
+                        <img id="eye-diagonal" src="{{ url_for('static', filename = 'svg/eye_not_show.svg') }}"></img>
+                        <img id="eye" style="display: none;" src="{{ url_for('static', filename = 'svg/eye_show.svg') }}"></img>
+                    </span>
+                </div>
+                <span class="invalid-feedback">項目を入力してください.</span>
+                <div id="passwordHelpBlock" class="form-text">
+                    4文字以上
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">新規登録</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename = 'js/password_show.js') }}"></script>
+{%- endblock %}
