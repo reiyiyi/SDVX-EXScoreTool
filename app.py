@@ -65,7 +65,7 @@ def try_login():
 @app.route('/login/signup')
 def signup():
     #ユーザデータ
-    return render_template('form.html')
+    return render_template('signup.html')
 
 @app.route('/login/signup/try', methods=['POST'])
 def try_signup():
@@ -74,8 +74,8 @@ def try_signup():
     mode = st_signup.try_signup(user, pw)
     if mode == '成功':
         return redirect('/login')
-    return render_template('form_error.html',
-                            mode=mode)
+    return render_template('signup_error.html',
+                            mode='hoge')
     #ユーザデータ
 
 @app.route('/logout')

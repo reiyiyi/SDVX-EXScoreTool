@@ -1,0 +1,9 @@
+{%- extends "layout.html" %}
+{%- block content %}
+    <div class="container">
+        <div class="bd-callout bd-callout-danger">
+            エラー:{{mode}}
+        </div>
+        <a href="{{url_for('signup')}}" class="btn btn-secondary">新規登録画面へ戻る</a>
+    </div>
+{%- endblock %}
