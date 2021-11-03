@@ -131,3 +131,7 @@ hr {
     flex: initial;
     width: initial;
 }
+
+.title {
+    margin: 1rem;
+}
