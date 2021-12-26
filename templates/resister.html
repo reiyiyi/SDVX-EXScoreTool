@@ -1,33 +1,14 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen and (max-width:768px)" href="{{ url_for('static', filename = 'css/sp-style.css') }}">
-    <link rel="stylesheet" media="screen and (min-width:769px)" href="{{ url_for('static', filename = 'css/style.css') }}">
-    <title>SDVX-EXスコアツール</title>
-</head>
-<body>
-    <header class="site-header wrapper">
-        <div class="header">
-            <a href="/" class="appname">SDVX-EXスコアツール</a>
+{%- extends "layout.html" %}
+{%- block content %}
+    <div class="resister-form container">
+        <div class="bd-callout bd-callout-info">
+            スコアデータ(CSV)を貼りつけて、送信ボタンを押してください。
         </div>
-    </header>
-    <div class="resister-form">
-        <p>スコアデータ(CSV)を貼ってください。</p>
-        <form action="/resister/hiscore" method="POST">
-            <textarea name="score" cols="100" rows="30"></textarea><br/>
-            <input type="submit" value="送信">
-        </form>
+        <div class="mb-3">
+            <form action="/resister/hiscore" method="POST">
+                <textarea class="form-control" name="score" rows="10"></textarea><br/>
+                <button class="btn btn-primary" type="submit">送信</button>
+            </form>
+        </div>
     </div>
-    <hr>
-
-    <hr>
-    <footer class="site-footer wrapper">
-        <div class="footer">
-        </div>
-    </footer>
-</body>
-</html>
+{%- endblock %}
