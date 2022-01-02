@@ -1,56 +1,55 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen and (max-width:768px)" href="{{ url_for('static', filename = 'css/sp-style.css') }}">
-    <link rel="stylesheet" media="screen and (min-width:769px)" href="{{ url_for('static', filename = 'css/style.css') }}">
-    <title>SDVX-EXスコアツール</title>
-</head>
-<body>
-    <header class="site-header wrapper">
-        <div class="header">
-            <a href="/" class="appname">SDVX-EXスコアツール</a>
+{%- extends "layout.html" %}
+{%- block content %}
+    <div id="user_page" class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2 class="title">{{user_name}}</h1>
+                <div id="user_info" class="card">
+                    <div class="card-body">
+                        ユーザーID: {{user}}
+                    </div>
+                </div>
+                <div id="register-rival" class="inline" style="margin: 1rem;">
+                    {% if is_resistered %}
+                    <p>
+                        あなたは{{user_name}}さんを<br>
+                        好敵手に登録しています
+                    </p>
+                    <a href="/rival/resister/{{user}}" class="btn btn-danger">好敵手解除</a>
+                    {% else %}
+                    <p>
+                        あなたは{{user_name}}さんを<br>
+                        好敵手に登録していません
+                    </p>
+                    <a href="/rival/resister/{{user}}" class="btn btn-primary">好敵手登録</a>
+                    {% endif %}
+                </div>
+                <div class="sp-register-rival-hr"></div>
+            </div>
+            <div class="col-lg-6">
+                <div id="s-puc" class="inline">
+                    <h2 class="title">S-PUC数</h3>
+                    <table class="table table-striped table-sm table-bordered table-spuc">
+                        <caption>※EXH譜面以上</caption>
+                        <thead>
+                            <tr>
+                                <th>レベル</th>
+                                <th>S-PUC数</th>
+                                <th>譜面数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in range(spuc_data|length) %}
+                            <tr>
+                                <td style="text-align: right;" scope="row">{{ i+7 }}</td>
+                                <td style="text-align: right;">{{ spuc_data[i] }}</td>
+                                <td style="text-align: right;">{{ num_data[i] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-    </header>
-    <p>{{user_name}}さんのユーザーページ</p>
-    <hr>
-    <p>ユーザーID: {{ user }}</p>
-    <p>ユーザー名: {{ user_name }}</p>
-    <hr>
-    <div class="inline">
-        {% if is_resistered %}
-        <p>現在、あなたは{{user_name}}さんを好敵手に登録しています</p>
-        <a href="/rival/resister/{{user}}" class="button">好敵手解除</a>
-        {% else %}
-        <p>現在、あなたは{{user_name}}さんを好敵手に登録していません</p>
-        <a href="/rival/resister/{{user}}" class="button">好敵手登録</a>
-        {% endif %}
     </div>
-    <hr>
-    <div class="spuc-list">
-        EXH譜面以上におけるS-PUC数
-        <table border="1">
-            <tr>
-                <th>レベル</th>
-                <th>S-PUC数</th>
-                <th>譜面数</th>
-            </tr>
-            {% for i in range(spuc_data|length) %}
-            <tr>
-                <td style="text-align: right;">{{ i+7 }}</td>
-                <td style="text-align: right;">{{ spuc_data[i] }}</td>
-                <td style="text-align: right;">{{ num_data[i] }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-    <hr>
-    <footer class="site-footer wrapper">
-        <div class="footer">
-        </div>
-    </footer>
-</body>
-</html>
+{%- endblock %}
