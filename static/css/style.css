@@ -125,3 +125,8 @@ hr {
 .title {
     margin: 1rem;
 }
+
+.table-spuc {
+    width: 75%;
+    margin: auto;
+}

@@ -125,6 +125,10 @@ hr {
     margin: 1rem;
 }
 
+.sp-register-rival-hr {
+    margin: 1rem 0;
+    border-bottom: 1px solid black;
+}
 .sp-table-layout {
     table-layout: fixed;
     width: 300%;
