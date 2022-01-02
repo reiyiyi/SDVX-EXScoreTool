@@ -117,10 +117,6 @@ hr {
     border-left-color: #d9534f;
 }
 
-.form-control {
-    width: initial;
-}
-
 .input-group > .form-control {
     flex: initial;
     width: initial;
