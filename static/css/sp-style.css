@@ -128,3 +128,8 @@ hr {
 .title {
     margin: 1rem;
 }
+
+.sp-table-layout {
+    table-layout: fixed;
+    width: 300%;
+}

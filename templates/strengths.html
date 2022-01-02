@@ -3,27 +3,27 @@
     <div class="strengths-list container">
         <h1 class="title">武器曲リスト</h1>
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped sp-table-layout">
                 <thead>
                     <tr>
-                        <th scope="col">順位</th>
-                        <th scope="col">楽曲名</th>
-                        <th scope="col">難易度</th>
-                        <th scope="col">レベル</th>
-                        <th scope="col">EXスコア</th>
-                        <th scope="col">MAX-</th>
-                        <th scope="col">上位</th>
+                        <th class="col-1">順位</th>
+                        <th class="col-6">楽曲名</th>
+                        <th class="col-1">難易度</th>
+                        <th class="col-1">レベル</th>
+                        <th class="col-1">EXスコア</th>
+                        <th class="col-1">MAX-</th>
+                        <th class="col-1">上位</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for i in range(data_num) %}
                         <tr>
                             <td scope="row">{{ i+1 }}</td>
-                            <td style="white-space: nowrap;"><a href="/ranking/{{ strengths_list[i]['ID'] }}" class="to-ranking-button">{{ strengths_list[i]["楽曲名"] }}</a></td>
+                            <td><a href="/ranking/{{ strengths_list[i]['ID'] }}" class="to-ranking-button">{{ strengths_list[i]["楽曲名"] }}</a></td>
                             <td>{{ strengths_list[i]["難易度"] }}</td>
                             <td>{{ strengths_list[i]["レベル"] }}</td>
                             <td>{{ strengths_list[i]["EXスコア"] }}</td>
-                            <td>{{ strengths_list[i]["MAX-"] }}</td>
+                            <td>MAX-{{ strengths_list[i]["MAX-"] }}</td>
                             <td>{{ strengths_list[i]["上位%"] }}%</td>
                         </tr>
                     {% endfor %}
