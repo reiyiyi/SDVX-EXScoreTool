@@ -1,66 +1,35 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen and (max-width:768px)" href="{{ url_for('static', filename = 'css/sp-style.css') }}">
-    <link rel="stylesheet" media="screen and (min-width:769px)" href="{{ url_for('static', filename = 'css/style.css') }}">
-    <title>SDVX-EXスコアツール</title>
-</head>
-<body>
-    <header class="site-header wrapper">
-        <div class="header">
-            <a href="/" class="appname">SDVX-EXスコアツール</a>
-        </div>
-    </header>
-    <div class="notice">
-        <p>通知</p>
+{%- extends "layout.html" %}
+{%- block content %}
+    <div id="notice" class="container">
+        <h1 class="title">通知</h1>
         {% for i in range(data_num) %}
-        <hr>
-        {% if notice_list[-i-1]["スコア"] != notice_list[-i-1]["好敵手更新後スコア"] %}
+        <div class="card">
+            <div class="card-body">
+            {% if notice_list[-i-1]["スコア"] != notice_list[-i-1]["好敵手更新後スコア"] %}
 
-        {% if "MAX" in notice_list[-i-1] %}
-        <p>{{notice_list[-i-1]["好敵手名"]}}さんが
-            {{notice_list[-i-1]["楽曲名"]}}[{{notice_list[-i-1]["難易度"]}} {{notice_list[-i-1]["レベル"]}}]
-            において、あなたのEXスコア {{notice_list[-i-1]["スコア"]}}(MAX-{{notice_list[-i-1]["MAX"] - notice_list[-i-1]["スコア"]}}) を抜かしました。</p>
-        <p>{{notice_list[-i-1]["好敵手名"]}}さんのスコア:
-            {{ notice_list[-i-1]["好敵手更新前スコア"] }}(MAX-{{ notice_list[-i-1]["MAX"] - notice_list[-i-1]["好敵手更新前スコア"] }})&nbsp;&nbsp;&nbsp;---[+{{ notice_list[-i-1]["好敵手更新後スコア"] - notice_list[-i-1]["好敵手更新前スコア"] }}]→&nbsp;&nbsp;&nbsp;{{ notice_list[-i-1]["好敵手更新後スコア"] }}(MAX-{{ notice_list[-i-1]["MAX"] - notice_list[-i-1]["好敵手更新後スコア"] }})</p>
-        {% else %}
-        <p>{{notice_list[-i-1]["好敵手名"]}}さんが
-            {{notice_list[-i-1]["楽曲名"]}}[{{notice_list[-i-1]["難易度"]}} {{notice_list[-i-1]["レベル"]}}]
-            において、あなたのEXスコア {{notice_list[-i-1]["スコア"]}} を抜かしました。</p>
-        <p>{{notice_list[-i-1]["好敵手名"]}}さんのスコア:
-            {{ notice_list[-i-1]["好敵手更新前スコア"] }}&nbsp;&nbsp;&nbsp;---[+{{ notice_list[-i-1]["好敵手更新後スコア"] - notice_list[-i-1]["好敵手更新前スコア"] }}]→&nbsp;&nbsp;&nbsp;{{ notice_list[-i-1]["好敵手更新後スコア"] }}</p>
-        {% endif %}
+            {% if "MAX" in notice_list[-i-1] %}
+                <p>{{notice_list[-i-1]["楽曲名"]}}[{{notice_list[-i-1]["難易度"]}} {{notice_list[-i-1]["レベル"]}}]のEXスコア({{notice_list[-i-1]["スコア"]}}(MAX-{{notice_list[-i-1]["MAX"] - notice_list[-i-1]["スコア"]}}))が 
+                    {{notice_list[-i-1]["好敵手名"]}} さんに抜かされました。</p>
+                {{notice_list[-i-1]["好敵手名"]}}さんのスコア: {{ notice_list[-i-1]["好敵手更新前スコア"] }}(MAX-{{ notice_list[-i-1]["MAX"] - notice_list[-i-1]["好敵手更新前スコア"] }}) → <b>{{ notice_list[-i-1]["好敵手更新後スコア"] }}(MAX-{{ notice_list[-i-1]["MAX"] - notice_list[-i-1]["好敵手更新後スコア"] }})[+{{ notice_list[-i-1]["好敵手更新後スコア"] - notice_list[-i-1]["好敵手更新前スコア"] }}]</b>
+            {% else %}
+                <p>{{notice_list[-i-1]["楽曲名"]}}[{{notice_list[-i-1]["難易度"]}} {{notice_list[-i-1]["レベル"]}}]のEXスコア({{notice_list[-i-1]["スコア"]}})が 
+                    {{notice_list[-i-1]["好敵手名"]}} さんに抜かされました。</p>
+                {{notice_list[-i-1]["好敵手名"]}}さんのスコア: {{ notice_list[-i-1]["好敵手更新前スコア"] }} → <b>{{ notice_list[-i-1]["好敵手更新後スコア"] }}[+{{ notice_list[-i-1]["好敵手更新後スコア"] - notice_list[-i-1]["好敵手更新前スコア"] }}]</b>
+            {% endif %}
 
-        {% else %}
+            {% else %}
 
-        {% if "MAX" in notice_list[-i-1] %}
-        <p>{{notice_list[-i-1]["好敵手名"]}}さんが
-            {{notice_list[-i-1]["楽曲名"]}}[{{notice_list[-i-1]["難易度"]}} {{notice_list[-i-1]["レベル"]}}]
-            において、あなたのEXスコア {{notice_list[-i-1]["スコア"]}}(MAX-{{notice_list[-i-1]["MAX"] - notice_list[-i-1]["スコア"]}}) と並びました。</p>
-        <p>{{notice_list[-i-1]["好敵手名"]}}さんのスコア:
-            {{ notice_list[-i-1]["好敵手更新前スコア"] }}(MAX-{{ notice_list[-i-1]["MAX"] - notice_list[-i-1]["好敵手更新前スコア"] }})&nbsp;&nbsp;&nbsp;---[+{{ notice_list[-i-1]["好敵手更新後スコア"] - notice_list[-i-1]["好敵手更新前スコア"] }}]→&nbsp;&nbsp;&nbsp;{{ notice_list[-i-1]["好敵手更新後スコア"] }}(MAX-{{ notice_list[-i-1]["MAX"] - notice_list[-i-1]["好敵手更新後スコア"] }})</p>
-        {% else %}
-        <p>{{notice_list[-i-1]["好敵手名"]}}さんが
-            {{notice_list[-i-1]["楽曲名"]}}[{{notice_list[-i-1]["難易度"]}} {{notice_list[-i-1]["レベル"]}}]
-            において、あなたのEXスコア {{notice_list[-i-1]["スコア"]}} と並びました。</p>
-        <p>{{notice_list[-i-1]["好敵手名"]}}さんのスコア:
-            {{ notice_list[-i-1]["好敵手更新前スコア"] }}&nbsp;&nbsp;&nbsp;---[+{{ notice_list[-i-1]["好敵手更新後スコア"] - notice_list[-i-1]["好敵手更新前スコア"] }}]→&nbsp;&nbsp;&nbsp;{{ notice_list[-i-1]["好敵手更新後スコア"] }}</p>
-        {% endif %}
+            {% if "MAX" in notice_list[-i-1] %}
+                <p>{{notice_list[-i-1]["楽曲名"]}}[{{notice_list[-i-1]["難易度"]}} {{notice_list[-i-1]["レベル"]}}]のEXスコアが {{notice_list[-i-1]["好敵手名"]}} さんに並ばれました。</p>
+                {{notice_list[-i-1]["好敵手名"]}}さんのスコア: {{ notice_list[-i-1]["好敵手更新前スコア"] }}(MAX-{{ notice_list[-i-1]["MAX"] - notice_list[-i-1]["好敵手更新前スコア"] }}) → <b>{{ notice_list[-i-1]["好敵手更新後スコア"] }}(MAX-{{ notice_list[-i-1]["MAX"] - notice_list[-i-1]["好敵手更新後スコア"] }})[+{{ notice_list[-i-1]["好敵手更新後スコア"] - notice_list[-i-1]["好敵手更新前スコア"] }}]</b>
+            {% else %}
+                <p>{{notice_list[-i-1]["楽曲名"]}}[{{notice_list[-i-1]["難易度"]}} {{notice_list[-i-1]["レベル"]}}]のEXスコアが {{notice_list[-i-1]["好敵手名"]}} さんに並ばれました。</p>
+                {{notice_list[-i-1]["好敵手名"]}}さんのスコア: {{ notice_list[-i-1]["好敵手更新前スコア"] }} → <b>{{ notice_list[-i-1]["好敵手更新後スコア"] }}[+{{ notice_list[-i-1]["好敵手更新後スコア"] - notice_list[-i-1]["好敵手更新前スコア"] }}]</b>
+            {% endif %}
 
-        {% endif %}
-
+            {% endif %}
+            </div>
+        </div>
         {% endfor %}
     </div>
-    <hr>
-
-    <hr>
-    <footer class="site-footer wrapper">
-        <div class="footer">
-        </div>
-    </footer>
-</body>
-</html>
+{%- endblock %}
