@@ -63,13 +63,7 @@ hr {
 }
 
 .to-ranking-button {
-    color: blue;
-    background: white;
     font-weight: bolder;
-    padding: 0.5em 0;
-    width: 100%;
-    display: inline-block;
-    text-align: left;
     text-decoration: none;
 }
 
@@ -133,4 +127,9 @@ hr {
 
 .title {
     margin: 1rem;
+}
+
+.sp-table-layout {
+    table-layout: fixed;
+    width: 300%;
 }
