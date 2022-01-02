@@ -1,30 +1,9 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen and (max-width:768px)" href="{{ url_for('static', filename = 'css/sp-style.css') }}">
-    <link rel="stylesheet" media="screen and (min-width:769px)" href="{{ url_for('static', filename = 'css/style.css') }}">
-    <title>SDVX-EXスコアツール</title>
-</head>
-<body>
-    <header class="site-header wrapper">
-        <div class="header">
-            <a href="/" class="appname">SDVX-EXスコアツール</a>
+{%- extends "layout.html" %}
+{%- block content %}
+    <div class="container">
+        <div class="bd-callout bd-callout-danger">
+            エラー:{{mode}}
         </div>
-    </header>
-    <div class="error">
-        <p>エラー:{{mode}}</p>
-        <a href="{{url_for('settings')}}" class="button">設定画面へ戻る</a>
+        <a href="{{url_for('settings')}}" class="btn btn-secondary">設定画面へ戻る</a>
     </div>
-    <hr>
-
-    <hr>
-    <footer class="site-footer wrapper">
-        <div class="footer">
-        </div>
-    </footer>
-</body>
-</html>
+{%- endblock %}

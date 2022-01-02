@@ -1,40 +1,33 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen and (max-width:768px)" href="{{ url_for('static', filename = 'css/sp-style.css') }}">
-    <link rel="stylesheet" media="screen and (min-width:769px)" href="{{ url_for('static', filename = 'css/style.css') }}">
-    <title>SDVX-EXスコアツール</title>
-</head>
-<body>
-    <header class="site-header wrapper">
-        <div class="header">
-            <a href="/" class="appname">SDVX-EXスコアツール</a>
-        </div>
-    </header>
-    <p>設定</p>
-    <div class="settings">
+{%- extends "layout.html" %}
+{%- block content %}
+    <div id="settings" class="container">
+        <h1 class="title">設定</h1>
+
         <form action="/settings/change" method="POST">
-            <p>ユーザー名</p>
-            <input type="text" name="new-user-name" id="new-user-name" value={{user_name}}>
-            <p>スコア公開設定</p>
-            <input type="radio" name="score-setting" id="score-setting" value="yes" {{true_checked}}>公開
-            <input type="radio" name="score-setting" id="score-setting" value="no" {{false_checked}}>非公開
-            <br/>
-            <button type="submit"
-                    class="pure-button pure-button-primary">
-                更新</button>
+            <div class="mb-3">
+                <label for="user" class="form-label">ユーザー名</p>
+                <input type="text" class="form-control" name="new-user-name" id="new-user-name" value={{user_name}}>
+                <div id="userHelpBlock" class="form-text">
+                    1~16文字以下、英数字とアンダーバー(_)のみ使用可能。
+                </div>        
+            </div>
+
+            <div class="mb-3">
+                <label for="user" class="form-label">スコア公開設定</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="score-setting" id="score-setting" value="yes" {{true_checked}}>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        公開
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="score-setting" id="score-setting" value="no" {{false_checked}}>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        非公開 
+                    </label>
+                </div>            </div>
+
+            <button type="submit" class="btn btn-primary">更新</button>
         </form>
     </div>
-    <hr>
-
-    <hr>
-    <footer class="site-footer wrapper">
-        <div class="footer">
-        </div>
-    </footer>
-</body>
-</html>
+{%- endblock %}
