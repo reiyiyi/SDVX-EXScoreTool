@@ -1,31 +1,19 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen and (max-width:768px)" href="{{ url_for('static', filename = 'css/sp-style.css') }}">
-    <link rel="stylesheet" media="screen and (min-width:769px)" href="{{ url_for('static', filename = 'css/style.css') }}">
-    <title>SDVX-EXスコアツール</title>
-</head>
-<body>
-    <header class="site-header wrapper">
-        <div class="header">
-            <a href="/" class="appname">SDVX-EXスコアツール</a>
+{%- extends "layout.html" %}
+{%- block content %}
+    <div id ="rival" class="container">
+        <div class="rival-settings">
+            <a href="{{url_for('rival_follow')}}" class="btn btn-primary">好敵手</a>
+            <a href="{{url_for('rival_follower')}}" class="btn btn-primary">逆好敵手</a>
         </div>
-    </header>
-    <div class="rival-settings">
-        <a href="{{url_for('rival_follow')}}" class="button">好敵手</a>
-        <a href="{{url_for('rival_follower')}}" class="button">逆好敵手</a>
-        <a href="{{url_for('rival_search')}}" class="button">ユーザー検索</a>
-    </div>
-    <hr>
 
-    <hr>
-    <footer class="site-footer wrapper">
-        <div class="footer">
+        <hr>
+    
+        <div class="rival-resister">
+            <p>ユーザーページを表示したいアカウントのユーザーIDを入力してください。</p>
+            <form action="/rival/search/try" method="POST">
+                <input type="text" name="search-id" id="search-id">
+                <button type="submit" class="btn btn-primary"> 検索</button>
+            </form>
         </div>
-    </footer>
-</body>
-</html>
+    </div>
+{%- endblock %}

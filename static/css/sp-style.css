@@ -93,6 +93,20 @@ hr {
 
 .rival-settings {
     text-align: center;
+    margin: 1rem;
+}
+
+.rival-resister {
+    text-align: center;
+}
+
+.rival-inline {
+    margin-bottom: 0.5rem;
+}
+
+.rival-link {
+    font-weight: bolder;
+    text-decoration: none;
 }
 
 .bd-callout {
