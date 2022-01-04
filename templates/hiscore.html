@@ -1,51 +1,34 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen and (max-width:768px)" href="{{ url_for('static', filename = 'css/sp-style.css') }}">
-    <link rel="stylesheet" media="screen and (min-width:769px)" href="{{ url_for('static', filename = 'css/style.css') }}">
-    <title>SDVX-EXスコアツール</title>
-</head>
-<body>
-    <header class="site-header wrapper">
-        <div class="header">
-            <a href="/" class="appname">SDVX-EXスコアツール</a>
-        </div>
-    </header>
-    <div class="hiscore">
+{%- extends "layout.html" %}
+{%- block content %}
+    <div id="hiscore" class="container">
+        <h1 class="title">{{mode}}のEXスコア更新</h1>
         {% if resister_error_list|length > 0 %}
-        <p>
-            !! 一部の譜面において、スコアデータを登録することができませんでした。
-            登録することができなかった譜面の情報(最大100件)を下に記載させていただきます。
-            この譜面の情報につきましてはログとして記録しており、こちらのデータに不備が見つかった場合は直ちに修正いたします。
+        <div class="bd-callout bd-callout-danger">
+            <p>一部の譜面において、スコアデータを登録することができませんでした。</p>
+            <p>登録することができなかった譜面の情報(最大100件)を下に記載させていただきます。</p>
+            <p>この譜面の情報につきましてはログとして記録しており、こちらのデータに不備が見つかった場合は直ちに修正いたします。</p>
             なお、「今回のEXスコア更新」はいつも通り下に記載しております。
-        </p>
-        <hr>
-        {% for error_data in resister_error_list %}
-        <p>{{ error_data["楽曲名"] }}[{{ error_data["難易度"] }}]</p>
-        {% endfor %}
+        </div>
+        <div class="card">
+            <div class="card-body">
+                {% for error_data in resister_error_list %}
+                <li>{{ error_data["楽曲名"] }}[{{ error_data["難易度"] }}]</li>
+                {% endfor %}
+            </div>
+        </div>
         <hr>
         {% endif %}
-        <h3>{{mode}}のEXスコア更新</h3>
         {% for i in range(data_num) %}
-        <hr>
-        <p>{{ hi_score_list[-i-1]["楽曲名"] }}[{{ hi_score_list[-i-1]["難易度"] }} {{ hi_score_list[-i-1]["レベル"] }}]</p>
-        {% if "MAX" in hi_score_list[-i-1] %}
-        <p>{{ hi_score_list[-i-1]["更新前スコア"] }}(MAX-{{ hi_score_list[-i-1]["MAX"] - hi_score_list[-i-1]["更新前スコア"] }})&nbsp;&nbsp;&nbsp;---[+{{ hi_score_list[-i-1]["更新後スコア"] - hi_score_list[-i-1]["更新前スコア"] }}]→&nbsp;&nbsp;&nbsp;{{ hi_score_list[-i-1]["更新後スコア"] }}(MAX-{{ hi_score_list[-i-1]["MAX"] - hi_score_list[-i-1]["更新後スコア"] }})</p>
-        {% else %}
-        <p>{{ hi_score_list[-i-1]["更新前スコア"] }}&nbsp;&nbsp;&nbsp;---[+{{ hi_score_list[-i-1]["更新後スコア"] - hi_score_list[-i-1]["更新前スコア"] }}]→&nbsp;&nbsp;&nbsp;{{ hi_score_list[-i-1]["更新後スコア"] }}</p>
+        <div class="card">
+            <div class="card-body">
+                <p>{{ hi_score_list[-i-1]["楽曲名"] }}[{{ hi_score_list[-i-1]["難易度"] }} {{ hi_score_list[-i-1]["レベル"] }}]</p>
+                {% if "MAX" in hi_score_list[-i-1] %}
+                {{ hi_score_list[-i-1]["更新前スコア"] }}(MAX-{{ hi_score_list[-i-1]["MAX"] - hi_score_list[-i-1]["更新前スコア"] }}) → <b>{{ hi_score_list[-i-1]["更新後スコア"] }}(MAX-{{ hi_score_list[-i-1]["MAX"] - hi_score_list[-i-1]["更新後スコア"] }})[+{{ hi_score_list[-i-1]["更新後スコア"] - hi_score_list[-i-1]["更新前スコア"] }}]</b>
+                {% else %}
+                {{ hi_score_list[-i-1]["更新前スコア"] }} → <b>{{ hi_score_list[-i-1]["更新後スコア"] }}[+{{ hi_score_list[-i-1]["更新後スコア"] - hi_score_list[-i-1]["更新前スコア"] }}]</b>
+            </div>
+        </div>
         {% endif %}
         {% endfor %}
     </div>
-    <hr>
-
-    <hr>
-    <footer class="site-footer wrapper">
-        <div class="footer">
-        </div>
-    </footer>
-</body>
-</html>
+{%- endblock %}
