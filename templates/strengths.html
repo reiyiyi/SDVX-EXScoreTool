@@ -19,7 +19,7 @@
                     {% for i in range(data_num) %}
                         <tr>
                             <td scope="row">{{ i+1 }}</td>
-                            <td><a href="/ranking/{{ strengths_list[i]['ID'] }}" class="to-ranking-button">{{ strengths_list[i]["楽曲名"] }}</a></td>
+                            <td><a href="/ranking/{{ strengths_list[i]['ID'] }}" class="ranking-button">{{ strengths_list[i]["楽曲名"] }}</a></td>
                             <td>{{ strengths_list[i]["難易度"] }}</td>
                             <td>{{ strengths_list[i]["レベル"] }}</td>
                             <td>{{ strengths_list[i]["EXスコア"] }}</td>
