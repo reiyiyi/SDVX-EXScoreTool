@@ -197,19 +197,13 @@ def rival_follower():
                             current="逆好敵手",
                             rival_data=rev_rival_data)
 
-@app.route('/rival/search')
-def rival_search():
-    if not st_login.is_login():
-        return redirect('/login')
-    return render_template('rival-search.html')
-
 @app.route('/rival/search/try', methods=['POST'])
 def follow_rival():
     if not st_login.is_login():
         return redirect('/login')
     search_id = request.form.get('search-id')
     if not rival_resister.is_exist(search_id):
-        return redirect('/rival/search')
+        return redirect('/rival')
     return redirect('/user/' + search_id)
 
 @app.route('/rival/resister/<rival>')
