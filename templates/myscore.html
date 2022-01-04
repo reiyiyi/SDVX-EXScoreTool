@@ -1,35 +1,11 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" media="screen and (max-width:768px)" href="{{ url_for('static', filename = 'css/sp-style.css') }}">
-    <link rel="stylesheet" media="screen and (min-width:769px)" href="{{ url_for('static', filename = 'css/style.css') }}">
-    <title>SDVX-EXスコアツール</title>
-</head>
-<body>
-    <header class="site-header wrapper">
-        <div class="header">
-            <a href="/" class="appname">SDVX-EXスコアツール</a>
-        </div>
-    </header>
-    <div class="myscore">
-        <p>レベルを選択してください。</p>
-        <br/>
+{%- extends "layout.html" %}
+{%- block content %}
+    <div id="myscore" class="container">
+        <h2 class="title">レベル選択</h2>
         <div class="level-inline">
             {% for i in range(20) %}
-            <a href="/myscore/{{ i + 1 }}" class="level-button">{{ i + 1 }}</a>
+            <a href="/myscore/{{ i + 1 }}" class="level-button btn btn-primary">{{ i + 1 }}</a>
             {% endfor %}
         </div>
     </div>
-    <hr>
-
-    <hr>
-    <footer class="site-footer wrapper">
-        <div class="footer">
-        </div>
-    </footer>
-</body>
-</html>
+{%- endblock %}
