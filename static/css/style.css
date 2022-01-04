@@ -125,3 +125,13 @@ hr {
 .title {
     margin: 1rem;
 }
+
+.table-spuc {
+    width: 75%;
+    margin: auto;
+} 
+
+#menu > a {
+    width: 30%;
+    margin: 4px;
+}
