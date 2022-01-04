@@ -52,17 +52,6 @@ hr {
 }
 
 .ranking-button {
-    color: blue;
-    background: white;
-    font-weight: bolder;
-    padding: 0.5em 0;
-    width: 100%;
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-}
-
-.to-ranking-button {
     font-weight: bolder;
     text-decoration: none;
 }
@@ -124,4 +113,9 @@ hr {
 
 .title {
     margin: 1rem;
+}
+
+.ranking-table {
+    width: 75%;
+    margin: auto;
 }
